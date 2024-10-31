@@ -27,7 +27,7 @@ And the best part? That means no matter where you are, it's there to assist you 
 <hr>
 <p align="center">
 <a><img width=500 
-  src="https://png.pngtree.com/png-clipart/20230824/original/pngtree-chatbot-messenger-banking-services-isometric-composition-with-personal-financial-manager-providing-budget-expenses-solutions-vector-illustration-picture-image_8372509.png" ></a>
+  src="https://img.freepik.com/premium-photo/3d-flat-icon-business-financial-concept-financial-analysts-presenting-growth-projections_980716-68719.jpg?w=1380" ></a>
 </p>
 <hr>
 
