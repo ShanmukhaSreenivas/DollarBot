@@ -12,15 +12,15 @@
 ![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/tpanati/DollarBot)
 [![Build Status](https://app.travis-ci.com/usmanwardag/dollar_bot.svg?branch=main)](https://app.travis-ci.com/usmanwardag/dollar_bot)
 
-# 💰 Dollar Bot 💰
+# 💰 DollarBot 💰
 
 <hr>
 
 # DollarBot - Because your financial future deserves the best!
 
-You wake up, brew a fresh cup of coffee, and start your day. You're excited because today is the day you take control of your finances like never before. How? Say hello to DollarBot, your ultimate financial companion. With simple commands, it transforms your financial story into one of motivation, empowerment, and control. 
+DollarBot is your ultimate financial sidekick, available on Telegram to help you manage expenses and take control of your finances. With its intuitive commands, DollarBot offers insights, analytics, and predictions, all designed to empower you to achieve your financial goals. 
 
-And the best part? DollarBot is your financial sidekick, available exclusively on Telegram. That means no matter where you are, it's there to assist you in recording your expenses seamlessly.
+And the best part? That means no matter where you are, it's there to assist you in recording your expenses seamlessly.
 
 <a href="https://www.canva.com/design/DAFxwU4ABIg/LqMkLeGUBhC__JmWmdkFiQ/watch?utm_content=DAFxwU4ABIg&utm_campaign=designshare&utm_medium=link&utm_source=editor">Click here for a video overview!!</a>
 
@@ -275,7 +275,7 @@ Some possible future enhancements are as follows:
 
 :heart: Acknowledgements
 ---
-We would like to thank Dr. Timothy Menzies for helping us understand the process of building a good Software Engineering project. We would also like to thank the teaching assistants San Gilson, Andre Lustosa, Xueqi (Sherry) Yang, Yasitha Rajapaksha, and Rahul Yedida for their support throughout the project.
+We would like to extend our heartfelt thanks to Dr. Timothy Menzies for guiding us through the process of building a strong Software Engineering project. We would also like to express our gratitude to the teaching assistants: San Gilson, Andre Lustosa, Xueqi (Sherry) Yang, Yasitha Rajapaksha, and Rahul Yedida, for their invaluable support throughout this project.
 
 
 :page_facing_up: License
@@ -285,12 +285,12 @@ This project is licensed under the terms of the MIT license. Please check [LICEN
 ## Contributors
 <table>
   <tr>
-    <td align="center"><img src="https://avatars.githubusercontent.com/u/114872378?v=4" width="75px;" alt=""/><br /><sub><b>Harshavardhan Bandaru</b></sub></a></td>
-    <td align="center"><img src="https://avatars.githubusercontent.com/u/35067896?v=4" width="75px;" alt=""/><br /><sub><b>Vyshnavi Adusumeli</b></sub></a><br /></td>
-    <td align="center"><img src="https://avatars.githubusercontent.com/u/144171816?s=400&u=e9fb80d2e9acb2fc438881017b49e6d26720a50d&v=4" width="75px;" alt=""/><br /><sub><b>Tejaswini Panati</b></sub></a><br /></td>
+    <td align="center"><img src="https://avatars.githubusercontent.com/u/114872378?v=4" width="75px;" alt=""/><br /><sub><b>Saiteja Labba</b></sub></a></td>
+    <td align="center"><img src="https://avatars.githubusercontent.com/u/35067896?v=4" width="75px;" alt=""/><br /><sub><b>Madhumitha Aravelli/b></sub></a><br /></td>
+    <td align="center"><img src="https://avatars.githubusercontent.com/u/144171816?s=400&u=e9fb80d2e9acb2fc438881017b49e6d26720a50d&v=4" width="75px;" alt=""/><br /><sub><b>Jaya Shruti Chintalapati</b></sub></a><br /></td>
   </tr>
 </table>
 
 # :calling: Support
 
-For any support, email us at `vadusum@ncsu.edu`
+For any support, email us at `slabba@ncsu.edu`
