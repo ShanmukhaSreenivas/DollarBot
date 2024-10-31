@@ -66,20 +66,30 @@ With simple commands, this bot allows you to:
 
 📆 **Generate Custom Reports for Any Date Range:** Choose any date range, and DollarBot will provide a spending summary. Perfect for when you want to check in on specific periods—such as vacations or special events—to see how they impacted your budget.
 
+  **Machine Learning Predictions:** Implemented machine learning techniques for predictive analytics, enhancing the accuracy and efficiency of expense predictions.
+  
+  **Email Notification Command:** Introduced a convenient send email command. When executed, this command automatically sends an email to the user containing detailed expenditure information.
+  
+  **CSV Export Command:** Implemented the csv command to export expenditure details to a CSV file. Users can execute this command to efficiently save and manage their financial data.
+  
+  **Weekly Expense Analysis:** Included a `weekly analysis` command to provide users with a comprehensive analysis of their expenses on a weekly basis.
+  
+  **Monthly Expense Analysis:** Introduced a `monthly analysis` command, enabling users to gain insights into their spending patterns over the course of a month.
+  
+  **Category Management:** Empowered users with the ability to manage expense categories. Users can add, edit, or delete categories according to their preferences.
+  
+  **Recurring Expenses:** Added the functionality for users to track recurring expenses. This feature facilitates the management of regularly occurring financial commitments.
+  
+# :star: What's New? - ( Latest version )
 
-# :star: What's New?
-
-- **Machine Learning Predictions:** Implemented machine learning techniques for predictive analytics, enhancing the accuracy and efficiency of expense predictions.
-- **Email Notification Command:** Introduced a convenient send email command. When executed, this command automatically sends an email to the user containing detailed expenditure information.
-- **CSV Export Command:** Implemented the csv command to export expenditure details to a CSV file. Users can execute this command to efficiently save and manage their financial data.
-- **Weekly Expense Analysis:** Included a `weekly analysis` command to provide users with a comprehensive analysis of their expenses on a weekly basis.
-- **Monthly Expense Analysis:** Introduced a `monthly analysis` command, enabling users to gain insights into their spending patterns over the course of a month.
-- **Category Management:** Empowered users with the ability to manage expense categories. Users can add, edit, or delete categories according to their preferences.
-- **Recurring Expenses:** Added the functionality for users to track recurring expenses. This feature facilitates the management of regularly occurring financial commitments.
-- **Social Media Integartion:** A convenient feature that generates shareable links for expense summaries. Users can easily share their summaries on popular social media platforms like Facebook, Twitter, and LinkedIn. With a simple command, DollarBot generates a custom link, URL-encodes it, and provides preformatted sharing options for each platform, allowing users to seamlessly showcase their expense management insights.
+- **Voice Command Feature:** This functionality allows users to record expenses and access different features by speaking commands. It provides hands-free control, making financial management more convenient and accessible, especially for users on the go. With this feature, users can quickly log expenses without typing, enhancing productivity.
+- **UI Enhancements:** The menu now includes inline keyboard buttons, creating a more streamlined and intuitive interface. Users can navigate and perform actions effortlessly, making the application not only visually appealing but also simpler to use, reducing time spent on finding features.
+- **Enhanced Error Handling:** Custom exceptions have been introduced to handle errors in a more targeted way. This enhancement ensures the app can recover smoothly from unexpected issues, offering a more robust experience for users and reducing interruptions during use.
+- **Social Media Integration:** A convenient feature that generates shareable links for expense summaries. Users can easily share their summaries on popular social media platforms like Facebook, Twitter, and LinkedIn. With a simple command, DollarBot generates a custom link, URL-encodes it, and provides preformatted sharing options for each platform, allowing users to seamlessly showcase their expense management insights.
 - **Report Generation:** Allows users to generate a detailed spending breakdown over a customizable date range. This feature provides valuable insights into spending patterns for specific time periods, helping users track and analyze their financial habits more effectively.
 - **Summary Generation:** command delivers a quick, high-level overview of spending by category for a specified period. This feature provides users with a concise breakdown allowing for a snapshot of overall spending without diving into detailed transactions.
 - **Bug Fixes and Improved Flow:** Addressed numerous bugs and issues to enhance the overall stability and user experience of the application. The latest updates include fixes to issues related to the previous flow of the application, ensuring a smoother and more reliable user interaction. Our commitment to quality assurance and user satisfaction is reflected in these improvements.
+  
 
 Are you a developer? <a href="https://github.com/tpanati/DollarBot/blob/main/README.md">Click here: For Developers and Future Contributors</a>
 
