@@ -62,6 +62,11 @@ With simple commands, this bot allows you to:
 
 📈 **Predict future expenses:** Predict your next month's budget based on your current expenditure
 
+🌎 **Share spending sumarieson social media:** on Social Media: Keep yourself accountable or just share milestones with friends—DollarBot allows you to share spending summaries directly on platforms like Facebook and Twitter. Celebrate budget victories and encourage others on their financial journeys.
+
+📆 **Generate Custom Reports for Any Date Range:** Choose any date range, and DollarBot will provide a spending summary. Perfect for when you want to check in on specific periods—such as vacations or special events—to see how they impacted your budget.
+
+
 # :star: What's New?
 
 - **Machine Learning Predictions:** Implemented machine learning techniques for predictive analytics, enhancing the accuracy and efficiency of expense predictions.
