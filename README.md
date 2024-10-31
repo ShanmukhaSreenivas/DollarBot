@@ -73,7 +73,7 @@ With simple commands, this bot allows you to:
 - **Recurring Expenses:** Added the functionality for users to track recurring expenses. This feature facilitates the management of regularly occurring financial commitments.
 - **Social Media Integartion:** A convenient feature that generates shareable links for expense summaries. Users can easily share their summaries on popular social media platforms like Facebook, Twitter, and LinkedIn. With a simple command, DollarBot generates a custom link, URL-encodes it, and provides preformatted sharing options for each platform, allowing users to seamlessly showcase their expense management insights.
 - **Report Generation:** Allows users to generate a detailed spending breakdown over a customizable date range. This feature provides valuable insights into spending patterns for specific time periods, helping users track and analyze their financial habits more effectively.
-- **Summary Geneartion:** 
+- **Summary Geneartion:** command delivers a quick, high-level overview of spending by category for a specified period. This feature provides users with a concise breakdown allowing for a snapshot of overall spending without diving into detailed transactions.
 - **Bug Fixes and Improved Flow:** Addressed numerous bugs and issues to enhance the overall stability and user experience of the application. The latest updates include fixes to issues related to the previous flow of the application, ensuring a smoother and more reliable user interaction. Our commitment to quality assurance and user satisfaction is reflected in these improvements.
 
 Are you a developer? <a href="https://github.com/tpanati/DollarBot/blob/main/README.md">Click here: For Developers and Future Contributors</a>
