@@ -279,8 +279,9 @@ Some possible future enhancements are as follows:
 6.  **Multi-Currency Support:** Extend DollarBot's functionality to support multiple currencies, catering to users with diverse financial portfolios. This enhancement ensures accurate tracking and reporting for users dealing with expenses in different currencies.
 7.  **Smart Notifications and Alerts:** Implement intelligent notification features to alert users about budget limits, unusual spending patterns, or upcoming bills. These proactive notifications will empower users to make informed financial decisions in real-time.
 8.  **Secure Cloud Sync and Backup:** Implement a secure cloud sync and backup feature to ensure users' data is protected and accessible across devices. This enhancement provides users with peace of mind, knowing that their financial data is safely stored and can be easily recovered if needed.
-
-
+9. **Gamified Savinng goals:** Add gamification elements to help users stay motivated. Reward users for staying under budget or achieving savings milestones with badges or points, adding a fun aspect to saving money.
+10. **Tax-Friendly Expense Tracking:** Create tax-friendly categories and generate year-end summaries to simplify filing taxes by organizing deductible expenses for easy access.
+11. **Mobile app version:**: Develop a standalone mobile application for DollarBot with push notifications for budget alerts, daily summaries, and other financial reminders.
 :heart: Acknowledgements
 ---
 We would like to extend our heartfelt thanks to Dr. Timothy Menzies for guiding us through the process of building a strong Software Engineering project. We would also like to express our gratitude to the teaching assistants: San Gilson, Andre Lustosa, Xueqi (Sherry) Yang, Yasitha Rajapaksha, and Rahul Yedida, for their invaluable support throughout this project.
