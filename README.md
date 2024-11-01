@@ -182,13 +182,15 @@ It first shows the message it heard and processes it accordingly
 
 ### UI Enhancement
 
-The menu UI is enhanced using Inline Keyboard buttons 
+The UI is enhanced using Inline Keyboard buttons and user friendly interfaces/messages.
 
 #### After enhancement
 <p align="center"><img width="700" src="./docs/workflows/menu(after).png"></p>
+<p align="center"><img width="400" src="./docs/workflows/help_after.png"></p>
 
 #### Before enhancement
 <p align="center"><img width="700" src="./docs/workflows/menu(before).png"></p>
+<p align="center"><img width="400" src="./docs/workflows/help_before.png"></p>
 
 ### Custom Exception handling 
 <p align="center"><img width="700" src="./docs/workflows/exception.png"></p>
