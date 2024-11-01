@@ -173,6 +173,30 @@ To run the script automatically at startup / reboot, simply add the `.run_foreve
 
 Here's a quick overview of how each of the commands work. Simply enter /<command_name> into the Telegram chat and watch as the magic happens! 
 
+## Latest version new use-cases
+
+### Voice commands
+Invoke any command dollarbot offers using voice.
+<p align="center"><img width="700" src="./docs/workflows/voice.gif"></p>
+It first shows the message it heard and processes it accordingly
+
+### UI Enhancement
+
+The menu UI is enhanced using Inline Keyboard buttons 
+
+#### After enhancement
+<p align="center"><img width="700" src="./docs/workflows/menu(after).png"></p>
+
+#### Before enhancement
+<p align="center"><img width="700" src="./docs/workflows/menu(before).png"></p>
+
+### Custom Exception handling 
+<p align="center"><img width="700" src="./docs/workflows/exception.png"></p>
+
+corresponding file  - https://github.com/CSC510-SE-SAITEJA-MADHUMITHA-SHRUTI/DollarBot/blob/main/code/exception.py
+
+## Previous version - Existing use cases
+
 ### Menu
 View all the commands Dollarbot offers to manage your expenses
 
@@ -305,7 +329,7 @@ This project is licensed under the terms of the MIT license. Please check [LICEN
 <table>
   <tr>
     <td align="center"><img src="https://avatars.githubusercontent.com/u/52523348?s=400&u=cac0a94ddf495fa55653b2d012f946166555b8b9&v=4" width="75px;" alt=""/><br /><sub><b>Saiteja Labba</b></sub></a></td>
-    <td align="center"><img src="https://avatars.githubusercontent.com/u/35067896?v=4" width="75px;" alt=""/><br /><sub><b>Madhumitha Aravelli/b></sub></a><br /></td>
+    <td align="center"><img src="https://avatars.githubusercontent.com/u/35067896?v=4" width="75px;" alt=""/><br /><sub><b>Madhumitha Aravelli</sub></a><br /></td>
     <td align="center"><img src="https://avatars.githubusercontent.com/u/144171816?s=400&u=e9fb80d2e9acb2fc438881017b49e6d26720a50d&v=4" width="75px;" alt=""/><br /><sub><b>Jaya Shruti Chintalapati</b></sub></a><br /></td>
   </tr>
 </table>
