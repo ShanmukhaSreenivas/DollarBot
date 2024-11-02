@@ -2,7 +2,7 @@ For each items, score yourself zero (none), one (a litte), two (somewhat), three
 Total Score = 88 / 90
 |Notes|evidence|Score|
 |-----|---------|---|
-|Video| https://www.youtube.com/watch?v=XlndmRhr9Lc | 3 |
+|Video| https://drive.google.com/file/d/1KgL1cUITotW6KhUY0iBWnY_TGmof85OS/view?usp=drive_link | 3 |
 |Workload is spread over the whole team (one team member is often Xtimes more productive than the others... 
 but nevertheless, here is a track record that everyone is contributing a lot)| (Repo Traffic History)[https://github.com/aditikilledar/dollar_bot_SE23/graphs/traffic] | 3 |
 |Number of commits|(Commit History)[https://github.com/aditikilledar/dollar_bot_SE23/graphs/commit-activity]| 3 |
