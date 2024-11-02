@@ -180,6 +180,11 @@ Invoke any command dollarbot offers using voice.
 <p align="center"><img width="700" src="./docs/workflows/voice.gif"></p>
 It first shows the message it heard and processes it accordingly
 
+### Social Media commands
+ generates shareable links for expense summaries on popular social media platforms like Facebook, Twitter, and LinkedIn.
+<p align="center"><img width="700" src="./docs/workflows/voice.gif"></p>
+It first shows the message it heard and processes it accordingly
+
 ### UI Enhancement
 
 The UI is enhanced using Inline Keyboard buttons and user friendly interfaces/messages.
