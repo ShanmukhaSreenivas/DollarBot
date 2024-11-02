@@ -53,7 +53,6 @@ from jproperties import Properties
 from telebot import types
 from telegram_bot_calendar import DetailedTelegramCalendar
 from add import cal
-import currencyconvert
 
 configs = Properties()
 
