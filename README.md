@@ -82,6 +82,10 @@ With simple commands, this bot allows you to:
   
 # :star: What's New? - ( Latest version )
 
+-### Demo Video
+For a quick walkthrough of the new features, check out the [demo video here](https://drive.google.com/file/d/1KgL1cUITotW6KhUY0iBWnY_TGmof85OS/view?usp=drive_link).
+
+
 - **Voice Command Feature:** This functionality allows users to record expenses and access different features by speaking commands. It provides hands-free control, making financial management more convenient and accessible, especially for users on the go. With this feature, users can quickly log expenses without typing, enhancing productivity.
 - **UI Enhancements:** The menu now includes inline keyboard buttons, creating a more streamlined and intuitive interface. Users can navigate and perform actions effortlessly, making the application not only visually appealing but also simpler to use, reducing time spent on finding features.
 - **Enhanced Error Handling:** Custom exceptions have been introduced to handle errors in a more targeted way. This enhancement ensures the app can recover smoothly from unexpected issues, offering a more robust experience for users and reducing interruptions during use.
