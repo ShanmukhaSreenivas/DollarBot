@@ -40,6 +40,15 @@ budget_types = {"overall": "Overall Budget", "category": "Category-Wise Budget"}
 data_format = {"data": [], "budget": {"overall": "0", "category": None}}
 analytics_options = {"overall": "Overall budget split by Category", "spend": "Split of current month expenditure", "remaining": "Remaining value", "history": "Time series graph of spend history"}
 
+# Currency conversion rates 
+exchange_rates = {
+    "USD_TO_GBP": 0.78,
+    "USD_TO_CAD": 1.34,
+    "USD_TO_INR": 84,
+    "USD_TO_EUR": 0.95,
+    "USD_TO_CHF": 0.9,
+}
+
 # set of implemented commands and their description
 commands = {
     "menu": "Display commands with their descriptions.",
@@ -450,3 +459,13 @@ def getUpdateOptions():
 
 def getAnalyticsOptions():
     return analytics_options
+def convert_currency(amount, from_currency, to_currency):
+    """
+    convert_currency(amount, from_currency, to_currency): Convert an amount from one currency to another.
+    """
+    conversion_key = f"{from_currency}_TO_{to_currency}"
+    if conversion_key in exchange_rates:
+        return round(amount * exchange_rates[conversion_key], 2)
+    else:
+        print("Conversion rate not available for this currency pair.")
+        return None
