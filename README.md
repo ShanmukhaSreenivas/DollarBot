@@ -12,22 +12,22 @@
 ![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/tpanati/DollarBot)
 [![Build Status](https://app.travis-ci.com/usmanwardag/dollar_bot.svg?branch=main)](https://app.travis-ci.com/usmanwardag/dollar_bot)
 
-# 💰 Dollar Bot 💰
+# 💰 DollarBot 💰
 
 <hr>
 
 # DollarBot - Because your financial future deserves the best!
 
-You wake up, brew a fresh cup of coffee, and start your day. You're excited because today is the day you take control of your finances like never before. How? Say hello to DollarBot, your ultimate financial companion. With simple commands, it transforms your financial story into one of motivation, empowerment, and control. 
+DollarBot is your ultimate financial sidekick, available on Telegram to help you manage expenses and take control of your finances. With its intuitive commands, DollarBot offers insights, analytics, and predictions, all designed to empower you to achieve your financial goals. 
 
-And the best part? DollarBot is your financial sidekick, available exclusively on Telegram. That means no matter where you are, it's there to assist you in recording your expenses seamlessly.
+And the best part? That means no matter where you are, it's there to assist you in recording your expenses seamlessly.
 
 <a href="https://www.canva.com/design/DAFxwU4ABIg/LqMkLeGUBhC__JmWmdkFiQ/watch?utm_content=DAFxwU4ABIg&utm_campaign=designshare&utm_medium=link&utm_source=editor">Click here for a video overview!!</a>
 
 <hr>
 <p align="center">
 <a><img width=500 
-  src="https://png.pngtree.com/png-clipart/20230824/original/pngtree-chatbot-messenger-banking-services-isometric-composition-with-personal-financial-manager-providing-budget-expenses-solutions-vector-illustration-picture-image_8372509.png" ></a>
+  src="https://img.freepik.com/premium-photo/3d-flat-icon-business-financial-concept-financial-analysts-presenting-growth-projections_980716-68719.jpg?w=1380" ></a>
 </p>
 <hr>
 
@@ -62,16 +62,38 @@ With simple commands, this bot allows you to:
 
 📈 **Predict future expenses:** Predict your next month's budget based on your current expenditure
 
-# :star: What's New?
+🌎 **Share spending sumarieson social media:** on Social Media: Keep yourself accountable or just share milestones with friends—DollarBot allows you to share spending summaries directly on platforms like Facebook and Twitter. Celebrate budget victories and encourage others on their financial journeys.
 
-- **Machine Learning Predictions:** Implemented machine learning techniques for predictive analytics, enhancing the accuracy and efficiency of expense predictions.
-- **Email Notification Command:** Introduced a convenient send email command. When executed, this command automatically sends an email to the user containing detailed expenditure information.
-- **CSV Export Command:** Implemented the csv command to export expenditure details to a CSV file. Users can execute this command to efficiently save and manage their financial data.
-- **Weekly Expense Analysis:** Included a `weekly analysis` command to provide users with a comprehensive analysis of their expenses on a weekly basis.
-- **Monthly Expense Analysis:** Introduced a `monthly analysis` command, enabling users to gain insights into their spending patterns over the course of a month.
-- **Category Management:** Empowered users with the ability to manage expense categories. Users can add, edit, or delete categories according to their preferences.
-- **Recurring Expenses:** Added the functionality for users to track recurring expenses. This feature facilitates the management of regularly occurring financial commitments.
+📆 **Generate Custom Reports for Any Date Range:** Choose any date range, and DollarBot will provide a spending summary. Perfect for when you want to check in on specific periods—such as vacations or special events—to see how they impacted your budget.
+
+  **Machine Learning Predictions:** Implemented machine learning techniques for predictive analytics, enhancing the accuracy and efficiency of expense predictions.
+  
+  **Email Notification Command:** Introduced a convenient send email command. When executed, this command automatically sends an email to the user containing detailed expenditure information.
+  
+  **CSV Export Command:** Implemented the csv command to export expenditure details to a CSV file. Users can execute this command to efficiently save and manage their financial data.
+  
+  **Weekly Expense Analysis:** Included a `weekly analysis` command to provide users with a comprehensive analysis of their expenses on a weekly basis.
+  
+  **Monthly Expense Analysis:** Introduced a `monthly analysis` command, enabling users to gain insights into their spending patterns over the course of a month.
+  
+  **Category Management:** Empowered users with the ability to manage expense categories. Users can add, edit, or delete categories according to their preferences.
+  
+  **Recurring Expenses:** Added the functionality for users to track recurring expenses. This feature facilitates the management of regularly occurring financial commitments.
+  
+# :star: What's New? - ( Latest version )
+
+-### Demo Video
+For a quick walkthrough of the new features, check out the [demo video here](https://drive.google.com/file/d/1KgL1cUITotW6KhUY0iBWnY_TGmof85OS/view?usp=drive_link).
+
+
+- **Voice Command Feature:** This functionality allows users to record expenses and access different features by speaking commands. It provides hands-free control, making financial management more convenient and accessible, especially for users on the go. With this feature, users can quickly log expenses without typing, enhancing productivity.
+- **UI Enhancements:** The menu now includes inline keyboard buttons, creating a more streamlined and intuitive interface. Users can navigate and perform actions effortlessly, making the application not only visually appealing but also simpler to use, reducing time spent on finding features.
+- **Enhanced Error Handling:** Custom exceptions have been introduced to handle errors in a more targeted way. This enhancement ensures the app can recover smoothly from unexpected issues, offering a more robust experience for users and reducing interruptions during use.
+- **Social Media Integration:** A convenient feature that generates shareable links for expense summaries. Users can easily share their summaries on popular social media platforms like Facebook, Twitter, and LinkedIn. With a simple command, DollarBot generates a custom link, URL-encodes it, and provides preformatted sharing options for each platform, allowing users to seamlessly showcase their expense management insights.
+- **Report Generation:** Allows users to generate a detailed spending breakdown over a customizable date range. This feature provides valuable insights into spending patterns for specific time periods, helping users track and analyze their financial habits more effectively.
+- **Summary Generation:** command delivers a quick, high-level overview of spending by category for a specified period. This feature provides users with a concise breakdown allowing for a snapshot of overall spending without diving into detailed transactions.
 - **Bug Fixes and Improved Flow:** Addressed numerous bugs and issues to enhance the overall stability and user experience of the application. The latest updates include fixes to issues related to the previous flow of the application, ensuring a smoother and more reliable user interaction. Our commitment to quality assurance and user satisfaction is reflected in these improvements.
+  
 
 Are you a developer? <a href="https://github.com/tpanati/DollarBot/blob/main/README.md">Click here: For Developers and Future Contributors</a>
 
@@ -154,6 +176,37 @@ To run the script automatically at startup / reboot, simply add the `.run_foreve
 # :information_desk_person: Use Cases
 
 Here's a quick overview of how each of the commands work. Simply enter /<command_name> into the Telegram chat and watch as the magic happens! 
+
+## Latest version new use-cases
+
+### Voice commands
+Invoke any command dollarbot offers using voice.
+<p align="center"><img width="700" src="./docs/workflows/voice.gif"></p>
+It first shows the message it heard and processes it accordingly
+
+### Social Media commands
+ generates shareable links for expense summaries on popular social media platforms like Facebook, Twitter, and LinkedIn.
+<p align="center"><img width="700" src="./docs/workflows/voice.gif"></p>
+It first shows the message it heard and processes it accordingly
+
+### UI Enhancement
+
+The UI is enhanced using Inline Keyboard buttons and user friendly interfaces/messages.
+
+#### After enhancement
+<p align="center"><img width="700" src="./docs/workflows/menu(after).png"></p>
+<p align="center"><img width="400" src="./docs/workflows/help_after.png"></p>
+
+#### Before enhancement
+<p align="center"><img width="700" src="./docs/workflows/menu(before).png"></p>
+<p align="center"><img width="400" src="./docs/workflows/help_before.png"></p>
+
+### Custom Exception handling 
+<p align="center"><img width="700" src="./docs/workflows/exception.png"></p>
+
+corresponding file  - https://github.com/CSC510-SE-SAITEJA-MADHUMITHA-SHRUTI/DollarBot/blob/main/code/exception.py
+
+## Previous version - Existing use cases
 
 ### Menu
 View all the commands Dollarbot offers to manage your expenses
@@ -271,11 +324,12 @@ Some possible future enhancements are as follows:
 6.  **Multi-Currency Support:** Extend DollarBot's functionality to support multiple currencies, catering to users with diverse financial portfolios. This enhancement ensures accurate tracking and reporting for users dealing with expenses in different currencies.
 7.  **Smart Notifications and Alerts:** Implement intelligent notification features to alert users about budget limits, unusual spending patterns, or upcoming bills. These proactive notifications will empower users to make informed financial decisions in real-time.
 8.  **Secure Cloud Sync and Backup:** Implement a secure cloud sync and backup feature to ensure users' data is protected and accessible across devices. This enhancement provides users with peace of mind, knowing that their financial data is safely stored and can be easily recovered if needed.
-
-
+9. **Gamified Savinng goals:** Add gamification elements to help users stay motivated. Reward users for staying under budget or achieving savings milestones with badges or points, adding a fun aspect to saving money.
+10. **Tax-Friendly Expense Tracking:** Create tax-friendly categories and generate year-end summaries to simplify filing taxes by organizing deductible expenses for easy access.
+11. **Mobile app version:**: Develop a standalone mobile application for DollarBot with push notifications for budget alerts, daily summaries, and other financial reminders.
 :heart: Acknowledgements
 ---
-We would like to thank Dr. Timothy Menzies for helping us understand the process of building a good Software Engineering project. We would also like to thank the teaching assistants San Gilson, Andre Lustosa, Xueqi (Sherry) Yang, Yasitha Rajapaksha, and Rahul Yedida for their support throughout the project.
+We would like to extend our heartfelt thanks to Dr. Timothy Menzies for guiding us through the process of building a strong Software Engineering project. We would also like to express our gratitude to the teaching assistants: San Gilson, Andre Lustosa, Xueqi (Sherry) Yang, Yasitha Rajapaksha, and Rahul Yedida, for their invaluable support throughout this project.
 
 
 :page_facing_up: License
@@ -285,12 +339,12 @@ This project is licensed under the terms of the MIT license. Please check [LICEN
 ## Contributors
 <table>
   <tr>
-    <td align="center"><img src="https://avatars.githubusercontent.com/u/114872378?v=4" width="75px;" alt=""/><br /><sub><b>Harshavardhan Bandaru</b></sub></a></td>
-    <td align="center"><img src="https://avatars.githubusercontent.com/u/35067896?v=4" width="75px;" alt=""/><br /><sub><b>Vyshnavi Adusumeli</b></sub></a><br /></td>
-    <td align="center"><img src="https://avatars.githubusercontent.com/u/144171816?s=400&u=e9fb80d2e9acb2fc438881017b49e6d26720a50d&v=4" width="75px;" alt=""/><br /><sub><b>Tejaswini Panati</b></sub></a><br /></td>
+    <td align="center"><img src="https://avatars.githubusercontent.com/u/52523348?s=400&u=cac0a94ddf495fa55653b2d012f946166555b8b9&v=4" width="75px;" alt=""/><br /><sub><b>Saiteja Labba</b></sub></a></td>
+    <td align="center"><img src="https://avatars.githubusercontent.com/u/35067896?v=4" width="75px;" alt=""/><br /><sub><b>Madhumitha Aravelli</sub></a><br /></td>
+    <td align="center"><img src="https://avatars.githubusercontent.com/u/144171816?s=400&u=e9fb80d2e9acb2fc438881017b49e6d26720a50d&v=4" width="75px;" alt=""/><br /><sub><b>Jaya Shruti Chintalapati</b></sub></a><br /></td>
   </tr>
 </table>
 
 # :calling: Support
 
-For any support, email us at `vadusum@ncsu.edu`
+For any support, email us at `slabba@ncsu.edu`

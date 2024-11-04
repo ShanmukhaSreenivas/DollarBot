@@ -61,7 +61,7 @@ with open("user.properties", "rb") as read_prop:
     configs.load(read_prop)
 
 api_token = str(configs.get("api_token").data)
-print(f"API Token from properties file: {api_token}")
+
 bot = telebot.TeleBot(api_token)
 
 telebot.logger.setLevel(logging.INFO)
@@ -114,7 +114,6 @@ def show_help(m):
         "/history - View your expense history 📜\n"
         "/budget - Check your budget 💳\n"
         "/analytics - View graphical analytics 📊\n"
-        "/currencies - Convert your expenses to a different currency 💱\n"
         "For more info, type /faq or tap the button below 👇"
         
     )
@@ -209,7 +208,7 @@ def callback_query(call):
     elif command == "faq":
         faq(call.message)
     elif command == "currencies":  
-        handle_currencies_command(call.message) 
+        handle_currencies_command(call.message)     
     elif DetailedTelegramCalendar.func()(call):  # If it’s a calendar action
         cal(call,bot)
     else:
@@ -433,11 +432,11 @@ def main():
     polling and actively listening for requests from telegram.
     """
     try:
-
-        bot.polling(non_stop=True)
+        bot.polling(none_stop=True)
     except Exception as e:
         logging.exception(str(e))
         time.sleep(3)
         print("Connection Timeout")
+
 if __name__ == "__main__":
     main() # type: ignore

@@ -83,7 +83,6 @@ commands = {
     "weekly": "This option is to get the weekly analysis report of the expenditure",
     "monthly": "This option is to get the monthly analysis report of the expenditure",
     "sendEmail": "Send an email with an attachment showing your history",
-    "currencies": "Convert your expenses to a different currency"
 }
 
 dateFormat = "%d-%b-%Y"
@@ -460,7 +459,6 @@ def getUpdateOptions():
 
 def getAnalyticsOptions():
     return analytics_options
-
 def convert_currency(amount, from_currency, to_currency):
     """
     convert_currency(amount, from_currency, to_currency): Convert an amount from one currency to another.
