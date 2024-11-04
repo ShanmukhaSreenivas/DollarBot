@@ -48,11 +48,14 @@ import monthly
 import sendEmail
 import voice
 import add_recurring
+import currencyconvert
+assert currencyconvert  # To indicate that it's intentionally imported
 from datetime import datetime
 from jproperties import Properties
 from telebot import types
 from telegram_bot_calendar import DetailedTelegramCalendar
 from add import cal
+
 
 configs = Properties()
 
@@ -113,7 +116,9 @@ def show_help(m):
         "/history - View your expense history 📜\n"
         "/budget - Check your budget 💳\n"
         "/analytics - View graphical analytics 📊\n"
+        "/currency - Convert between different currencies 💱\n"
         "For more info, type /faq or tap the button below 👇"
+        
     )
     keyboard = types.InlineKeyboardMarkup()
     keyboard.add(types.InlineKeyboardButton("FAQ", callback_data='faq'))
@@ -205,6 +210,8 @@ def callback_query(call):
         command_sendEmail(call.message)
     elif command == "faq":
         faq(call.message)
+    elif command == "currency":  
+        handle_currencies_command(call.message)     
     elif DetailedTelegramCalendar.func()(call):  # If it’s a calendar action
         cal(call,bot)
     else:
@@ -361,6 +368,66 @@ def command_predict(message):
     analyze budget and spending trends and suggest a future budget. Commands to run this commands=["predict"]
     """
     predict.run(message, bot)
+
+@bot.message_handler(commands=["currency"])
+def handle_currencies_command(message):
+    chat_id = message.chat.id
+    user_history = helper.getUserHistory(chat_id)
+
+    if user_history is None:
+        bot.send_message(chat_id, "No spending records available!")
+        return
+    print("Retrieved user history:", user_history)
+
+    # Ask user for target currency with reordered list including new currencies
+    markup = types.ReplyKeyboardMarkup(one_time_keyboard=True)
+    markup.add("GBP", "CAD", "INR", "CHF", "EUR")
+    msg = bot.reply_to(message, "Which currency do you want to convert to?", reply_markup=markup)
+    bot.register_next_step_handler(msg, process_currency_selection)
+
+def process_currency_selection(message):
+    chat_id = message.chat.id
+    currency_code = message.text
+
+    # Verify selected currency
+    if currency_code not in ["GBP", "CAD", "INR", "CHF", "EUR"]:
+        bot.send_message(chat_id, "Invalid currency selection.")
+        return
+
+    # Get spending data in selected currency
+    hist= helper.getUserHistory(chat_id)
+    query_results = []
+    
+    # Filter entries based on the current month and format them for the conversion function
+    for entry in hist:
+        try:
+            entry_date = datetime.strptime(entry.split(',')[0], "%d-%b-%Y")
+            if entry_date.strftime("%b-%Y") == datetime.now().strftime("%b-%Y"):
+                query_results.append(entry)
+        except ValueError:
+            print("Skipping malformed date entry:", entry)  # Debug for malformed entries
+    print("Filtered query results:", query_results)  # Debug output
+
+
+    if query_results:
+        try:
+            # Sum the spendings from the current month's entries
+            total_spendings = sum(float(entry.split(',')[2]) for entry in query_results)
+            print("Total spendings in USD:", total_spendings)  # Debug
+
+            # Convert the total spending to the selected currency
+            converted_amount = helper.convert_currency(total_spendings, 'USD', currency_code)
+
+            # Display the result or error message
+            if converted_amount is not None:
+                bot.send_message(chat_id, f"Your total spendings in {currency_code} is approximately {converted_amount:.2f}.")
+            else:
+                bot.send_message(chat_id, "Error during currency conversion.")
+        except Exception as e:
+            print("Error during conversion:", e)  # Log any errors
+            bot.send_message(chat_id, "An error occurred while calculating spendings. Please try again.")
+    else:
+        bot.send_message(chat_id, "No spending history available for the current month.")
 
 def main():
     """

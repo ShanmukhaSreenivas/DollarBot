@@ -40,6 +40,15 @@ budget_types = {"overall": "Overall Budget", "category": "Category-Wise Budget"}
 data_format = {"data": [], "budget": {"overall": "0", "category": None}}
 analytics_options = {"overall": "Overall budget split by Category", "spend": "Split of current month expenditure", "remaining": "Remaining value", "history": "Time series graph of spend history"}
 
+# Currency conversion rates 
+exchange_rates = {
+    "USD_TO_GBP": 0.78,
+    "USD_TO_CAD": 1.34,
+    "USD_TO_INR": 84,
+    "USD_TO_EUR": 0.95,
+    "USD_TO_CHF": 0.9,
+}
+
 # set of implemented commands and their description
 commands = {
     "menu": "Display commands with their descriptions.",
@@ -74,6 +83,10 @@ commands = {
     "weekly": "This option is to get the weekly analysis report of the expenditure",
     "monthly": "This option is to get the monthly analysis report of the expenditure",
     "sendEmail": "Send an email with an attachment showing your history",
+    "currency": "This option allows you to convert your total expenditures from USD to other currencies. \
+    \n 1. Choose a currency (e.g., GBP, CAD, INR, CHF, EUR) to view your spendings in that currency \
+    \n 2. The bot will calculate the total expenditures for the current month and convert them to your selected currency.",
+
 }
 
 dateFormat = "%d-%b-%Y"
@@ -450,3 +463,13 @@ def getUpdateOptions():
 
 def getAnalyticsOptions():
     return analytics_options
+def convert_currency(amount, from_currency, to_currency):
+    """
+    convert_currency(amount, from_currency, to_currency): Convert an amount from one currency to another.
+    """
+    conversion_key = f"{from_currency}_TO_{to_currency}"
+    if conversion_key in exchange_rates:
+        return round(amount * exchange_rates[conversion_key], 2)
+    else:
+        print("Conversion rate not available for this currency pair.")
+        return None
