@@ -116,6 +116,7 @@ def show_help(m):
         "/analytics - View graphical analytics 📊\n"
         "/currencies - Convert your expenses to a different currency 💱\n"
         "For more info, type /faq or tap the button below 👇"
+        
     )
     keyboard = types.InlineKeyboardMarkup()
     keyboard.add(types.InlineKeyboardButton("FAQ", callback_data='faq'))
