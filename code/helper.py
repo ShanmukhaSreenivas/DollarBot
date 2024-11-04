@@ -84,7 +84,7 @@ commands = {
     "monthly": "This option is to get the monthly analysis report of the expenditure",
     "sendEmail": "Send an email with an attachment showing your history",
     "currencies": "Convert your expenses to a different currency"
-    
+}
 
 dateFormat = "%d-%b-%Y"
 timeFormat = "%H:%M"
