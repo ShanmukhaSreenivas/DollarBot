@@ -13,3 +13,4 @@ tabulate
 pandas
 SpeechRecognition
 pydub
+forex-python
