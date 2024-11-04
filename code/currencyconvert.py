@@ -1,7 +1,6 @@
 # currency_converter.py
 
 from forex_python.converter import CurrencyRates
-from datetime import datetime
 import helper
 
 # Initialize CurrencyRates object

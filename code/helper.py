@@ -83,6 +83,10 @@ commands = {
     "weekly": "This option is to get the weekly analysis report of the expenditure",
     "monthly": "This option is to get the monthly analysis report of the expenditure",
     "sendEmail": "Send an email with an attachment showing your history",
+    "currency": "This option allows you to convert your total expenditures from USD to other currencies. \
+    \n 1. Choose a currency (e.g., GBP, CAD, INR, CHF, EUR) to view your spendings in that currency \
+    \n 2. The bot will calculate the total expenditures for the current month and convert them to your selected currency.",
+
 }
 
 dateFormat = "%d-%b-%Y"

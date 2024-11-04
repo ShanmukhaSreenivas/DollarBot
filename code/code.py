@@ -48,12 +48,14 @@ import monthly
 import sendEmail
 import voice
 import add_recurring
+import currencyconvert
+assert currencyconvert  # To indicate that it's intentionally imported
 from datetime import datetime
 from jproperties import Properties
 from telebot import types
 from telegram_bot_calendar import DetailedTelegramCalendar
 from add import cal
-import currencyconvert
+
 
 configs = Properties()
 
@@ -114,6 +116,7 @@ def show_help(m):
         "/history - View your expense history 📜\n"
         "/budget - Check your budget 💳\n"
         "/analytics - View graphical analytics 📊\n"
+        "/currency - Convert between different currencies 💱\n"
         "For more info, type /faq or tap the button below 👇"
         
     )
@@ -207,7 +210,7 @@ def callback_query(call):
         command_sendEmail(call.message)
     elif command == "faq":
         faq(call.message)
-    elif command == "currencies":  
+    elif command == "currency":  
         handle_currencies_command(call.message)     
     elif DetailedTelegramCalendar.func()(call):  # If it’s a calendar action
         cal(call,bot)
@@ -366,7 +369,7 @@ def command_predict(message):
     """
     predict.run(message, bot)
 
-@bot.message_handler(commands=["currencies"])
+@bot.message_handler(commands=["currency"])
 def handle_currencies_command(message):
     chat_id = message.chat.id
     user_history = helper.getUserHistory(chat_id)
@@ -392,11 +395,11 @@ def process_currency_selection(message):
         return
 
     # Get spending data in selected currency
-    history = helper.getUserHistory(chat_id)
+    hist= helper.getUserHistory(chat_id)
     query_results = []
     
     # Filter entries based on the current month and format them for the conversion function
-    for entry in history:
+    for entry in hist:
         try:
             entry_date = datetime.strptime(entry.split(',')[0], "%d-%b-%Y")
             if entry_date.strftime("%b-%Y") == datetime.now().strftime("%b-%Y"):
