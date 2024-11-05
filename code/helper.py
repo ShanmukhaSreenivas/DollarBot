@@ -28,6 +28,8 @@ SOFTWARE.
 import re
 import json
 import os
+import logging
+from code import pdf 
 from datetime import datetime
 
 spend_categories = []
@@ -475,8 +477,6 @@ def convert_currency(amount, from_currency, to_currency):
         print("Conversion rate not available for this currency pair.")
         return None
 
-import logging
-from code import pdf, helper 
  # Adjust imports based on your project structure
 
 def generate_shareable_link(chat_id):
@@ -497,15 +497,15 @@ def generate_shareable_link(chat_id):
         file_path = pdf.create_summary_pdf(chat_id)
         
         # Step 2: Upload the file to a cloud service (e.g., Google Drive)
-        shareable_link = helper.upload_to_drive(file_path)
+        shareable_link = upload_to_drive(file_path)
 
         # Log the generated link
-        logging.info(f"Generated shareable link for chat ID {chat_id}: {shareable_link}")
+        logging.info(f"Generated shareable link for chat ID %s: %s", chat_id, shareable_link)
         
         return shareable_link
     except FileNotFoundError:
-        logging.error(f"PDF file not found for chat ID {chat_id}.")
+        logging.error(f"PDF file not found for chat ID %s.", chat_id)
         return None
     except Exception as e:
-        logging.exception(f"Error generating shareable link for chat ID {chat_id}: {e}")
+        logging.exception("Error generating shareable link for chat ID %s: %s", chat_id, e)
         return None        
