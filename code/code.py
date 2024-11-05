@@ -51,12 +51,16 @@ import add_recurring
 import currencyconvert
 import re
 import logging
+import os
+import logging
+import urllib.parse
 assert currencyconvert  # To indicate that it's intentionally imported
 from datetime import datetime
 from jproperties import Properties
 from telebot import types
 from telegram_bot_calendar import DetailedTelegramCalendar
 from add import cal
+from code import pdf  # Adjust the import based on your project structure
 
 
 configs = Properties()
@@ -453,10 +457,6 @@ def process_currency_selection(message):
     else:
         bot.send_message(chat_id, "No spending history available for the current month.")
 
-import os
-import logging
-import urllib.parse
-from code import pdf  # Adjust the import based on your project structure
 
 @bot.message_handler(commands=["socialmedia"])
 def command_socialmedia(message):
