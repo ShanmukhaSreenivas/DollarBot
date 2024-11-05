@@ -29,6 +29,9 @@ import re
 import json
 import os
 import logging
+import logging
+import pdf  
+# from code import upload_to_drive
 from code import pdf 
 from datetime import datetime
 
@@ -497,7 +500,7 @@ def generate_shareable_link(chat_id):
         file_path = pdf.create_summary_pdf(chat_id)
         
         # Step 2: Upload the file to a cloud service (e.g., Google Drive)
-        shareable_link = upload_to_drive(file_path)
+        # shareable_link = upload_to_drive(file_path)
 
         # Log the generated link
         logging.info(f"Generated shareable link for chat ID %s: %s", chat_id, shareable_link)
