@@ -49,7 +49,6 @@ import sendEmail
 import voice
 import add_recurring
 import currencyconvert
-import os
 import urllib.parse
 assert currencyconvert  # To indicate that it's intentionally imported
 from datetime import datetime
@@ -233,19 +232,18 @@ def callback_query(call):
     if response_text:
         bot.send_message(call.message.chat.id, response_text, parse_mode='Markdown')
     else:
-        logging.warning(f"Attempted to send an empty message for command: {command}")
+        logging.warning("Attempted to send an empty message for command: %s", command)
         bot.send_message(call.message.chat.id, "Try using /help or explore other commands to see what I can do for you!")
 
     bot.send_message(call.message.chat.id, response_text, parse_mode='Markdown')
 
-def generate_response(data):
+def generate_response(_data):
     try:
-        # Your logic to generate a response based on the data
         response = "Your generated response here"  # Replace with actual logic
         return response
     except Exception as e:
         logging.error("Error generating response: %s", e)
-        return "⚠️ There was an error generating the response."    
+        return "⚠️ There was an error generating the response."
 
 # defines how the /add command has to be handled/processed
 @bot.message_handler(commands=["add"])
