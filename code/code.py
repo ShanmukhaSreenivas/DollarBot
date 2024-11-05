@@ -49,10 +49,7 @@ import sendEmail
 import voice
 import add_recurring
 import currencyconvert
-import re
-import logging
 import os
-import logging
 import urllib.parse
 assert currencyconvert  # To indicate that it's intentionally imported
 from datetime import datetime
@@ -247,7 +244,7 @@ def generate_response(data):
         response = "Your generated response here"  # Replace with actual logic
         return response
     except Exception as e:
-        logging.error(f"Error generating response: {e}")
+        logging.error("Error generating response: %s", e)
         return "⚠️ There was an error generating the response."    
 
 # defines how the /add command has to be handled/processed
@@ -487,24 +484,8 @@ def command_socialmedia(message):
         bot.send_message(chat_id, "❌ Oops! We couldn't generate a shareable link for you. Please try again later.")
 
 def generate_shareable_link(chat_id):
-    """
-    Generates a shareable link for the user's expense summary.
-    This function creates a PDF summary of the user's expenses, uploads it to a cloud storage service,
-    and returns a shareable link.
-    """
-    try:
-        # Generate PDF and get the file path
-        file_path = pdf.create_summary_pdf(chat_id)
-        
-        # Simulate creating a shareable link (replace this with actual upload logic)
-        # Example: upload the file to cloud storage and get a public URL
-        shareable_link = f"https://example.com/shared_files/{os.path.basename(file_path)}"
-        
-        logging.info(f"Generated shareable link for chat ID {chat_id}: {shareable_link}")
-        return shareable_link
-    except Exception as e:
-        logging.exception(f"Error generating shareable link for chat ID {chat_id}: {e}")
-        return None
+    # Placeholder for link generation logic. Replace with actual implementation.
+    return f"https://dollarbot.com/summary/{chat_id}"
       
 
 def main():

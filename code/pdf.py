@@ -162,5 +162,5 @@ def create_summary_pdf(chat_id):
 
         return file_path
     except Exception as e:
-        logging.error("Error while creating PDF: " + str(e))
+        logging.error("Error while creating PDF: %s", e)
         return None  
