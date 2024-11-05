@@ -86,6 +86,7 @@ commands = {
     "currency": "This option allows you to convert your total expenditures from USD to other currencies. \
     \n 1. Choose a currency (e.g., GBP, CAD, INR, CHF, EUR) to view your spendings in that currency \
     \n 2. The bot will calculate the total expenditures for the current month and convert them to your selected currency.",
+    "socialmedia": "Generate a shareable link for your expense summary.",
 
 }
 
@@ -473,3 +474,38 @@ def convert_currency(amount, from_currency, to_currency):
     else:
         print("Conversion rate not available for this currency pair.")
         return None
+
+import logging
+from code import pdf, helper 
+ # Adjust imports based on your project structure
+
+def generate_shareable_link(chat_id):
+    """
+    Generates a shareable link for the user's expense summary.
+    
+    This function creates a PDF summary of the user's expenses, uploads it to a cloud storage service, 
+    and returns a shareable link.
+
+    Args:
+        chat_id (int): The chat ID of the user for whom the expense summary is generated.
+
+    Returns:
+        str: A publicly accessible link to the user's expense summary or None if an error occurs.
+    """
+    try:
+        # Step 1: Generate the PDF summary
+        file_path = pdf.create_summary_pdf(chat_id)
+        
+        # Step 2: Upload the file to a cloud service (e.g., Google Drive)
+        shareable_link = helper.upload_to_drive(file_path)
+
+        # Log the generated link
+        logging.info(f"Generated shareable link for chat ID {chat_id}: {shareable_link}")
+        
+        return shareable_link
+    except FileNotFoundError:
+        logging.error(f"PDF file not found for chat ID {chat_id}.")
+        return None
+    except Exception as e:
+        logging.exception(f"Error generating shareable link for chat ID {chat_id}: {e}")
+        return None        

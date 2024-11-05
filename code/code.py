@@ -49,6 +49,8 @@ import sendEmail
 import voice
 import add_recurring
 import currencyconvert
+import re
+import logging
 assert currencyconvert  # To indicate that it's intentionally imported
 from datetime import datetime
 from jproperties import Properties
@@ -70,6 +72,10 @@ telebot.logger.setLevel(logging.INFO)
 
 option = {}
 user_list = {}
+
+# Configure logging
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s')
 
 # === Documentation of code.py ===
 
@@ -211,16 +217,34 @@ def callback_query(call):
     elif command == "faq":
         faq(call.message)
     elif command == "currency":  
-        handle_currencies_command(call.message)     
+        handle_currencies_command(call.message)   
+    elif command == "socialmedia":  # New command added here
+        command_socialmedia(call.message)      
     elif DetailedTelegramCalendar.func()(call):  # If it’s a calendar action
         cal(call,bot)
     else:
         response_text = "Command not recognized."
 
     # Acknowledge the button press
-    # Acknowledge the button press
     bot.answer_callback_query(call.id)
+
+     # Check if response_text is empty before sending
+    if response_text:
+        bot.send_message(call.message.chat.id, response_text, parse_mode='Markdown')
+    else:
+        logging.warning(f"Attempted to send an empty message for command: {command}")
+        bot.send_message(call.message.chat.id, "Try using /help or explore other commands to see what I can do for you!")
+
     bot.send_message(call.message.chat.id, response_text, parse_mode='Markdown')
+
+def generate_response(data):
+    try:
+        # Your logic to generate a response based on the data
+        response = "Your generated response here"  # Replace with actual logic
+        return response
+    except Exception as e:
+        logging.error(f"Error generating response: {e}")
+        return "⚠️ There was an error generating the response."    
 
 # defines how the /add command has to be handled/processed
 @bot.message_handler(commands=["add"])
@@ -428,6 +452,60 @@ def process_currency_selection(message):
             bot.send_message(chat_id, "An error occurred while calculating spendings. Please try again.")
     else:
         bot.send_message(chat_id, "No spending history available for the current month.")
+
+import os
+import logging
+import urllib.parse
+from code import pdf  # Adjust the import based on your project structure
+
+@bot.message_handler(commands=["socialmedia"])
+def command_socialmedia(message):
+    """
+    command_socialmedia(message): Generates a shareable link for the user's expense summary 
+    that can be posted on social media platforms.
+    """
+    chat_id = message.chat.id
+    
+    # Generate or fetch the link to the user's expense summary
+    summary_link = generate_shareable_link(chat_id)
+    
+    if summary_link:
+        # URL encode the summary link
+        encoded_link = urllib.parse.quote(summary_link)
+
+        # Message with options for social media platforms
+        response_message = (
+            "🎉 Your shareable link to your expense summary has been generated successfully!\n"
+            f"{summary_link}\n\n"
+            "Share this link on your favorite social media platforms:\n"
+            f"1. Facebook: [Share on Facebook](https://www.facebook.com/sharer/sharer.php?u={encoded_link})\n"
+            f"2. Twitter: [Share on Twitter](https://twitter.com/share?url={encoded_link}&text=Check%20out%20my%20expense%20summary!)\n"
+            f"3. LinkedIn: [Share on LinkedIn](https://www.linkedin.com/sharing/share-offsite/?url={encoded_link})"
+        )
+        bot.send_message(chat_id, response_message, parse_mode="Markdown")
+    else:
+        bot.send_message(chat_id, "❌ Oops! We couldn't generate a shareable link for you. Please try again later.")
+
+def generate_shareable_link(chat_id):
+    """
+    Generates a shareable link for the user's expense summary.
+    This function creates a PDF summary of the user's expenses, uploads it to a cloud storage service,
+    and returns a shareable link.
+    """
+    try:
+        # Generate PDF and get the file path
+        file_path = pdf.create_summary_pdf(chat_id)
+        
+        # Simulate creating a shareable link (replace this with actual upload logic)
+        # Example: upload the file to cloud storage and get a public URL
+        shareable_link = f"https://example.com/shared_files/{os.path.basename(file_path)}"
+        
+        logging.info(f"Generated shareable link for chat ID {chat_id}: {shareable_link}")
+        return shareable_link
+    except Exception as e:
+        logging.exception(f"Error generating shareable link for chat ID {chat_id}: {e}")
+        return None
+      
 
 def main():
     """
