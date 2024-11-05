@@ -28,10 +28,9 @@ SOFTWARE.
 import re
 import json
 import os
-import logging
-import pdf  
+import logging 
 # from code import upload_to_drive
-from code import pdf 
+# from code import pdf 
 from datetime import datetime
 
 spend_categories = []
@@ -192,7 +191,7 @@ def getUserHistoryByCategory(chat_id, category):
     data = getUserHistory(chat_id)
     previous_expenses = []
     for record in data:
-        if f"{category}" in record:  # corrected f-string without interpolation
+        if category in record: # fixed 
             previous_expenses.append(record)
     return previous_expenses
 
