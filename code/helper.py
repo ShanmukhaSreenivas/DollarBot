@@ -505,7 +505,7 @@ def generate_shareable_link(chat_id):
         # Log the generated link
         # logging.info(f"Generated shareable link for chat ID %s: %s", chat_id, shareable_link)
         
-        return shareable_link
+        # return shareable_link
     except FileNotFoundError:
         logging.error(f"PDF file not found for chat ID %s.", chat_id)
         return None
