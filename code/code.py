@@ -49,12 +49,14 @@ import sendEmail
 import voice
 import add_recurring
 import currencyconvert
+import urllib.parse
 assert currencyconvert  # To indicate that it's intentionally imported
 from datetime import datetime
 from jproperties import Properties
 from telebot import types
 from telegram_bot_calendar import DetailedTelegramCalendar
 from add import cal
+from code import pdf  # Adjust the import based on your project structure
 
 
 configs = Properties()
@@ -70,6 +72,10 @@ telebot.logger.setLevel(logging.INFO)
 
 option = {}
 user_list = {}
+
+# Configure logging
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s')
 
 # === Documentation of code.py ===
 
@@ -117,6 +123,7 @@ def show_help(m):
         "/budget - Check your budget 💳\n"
         "/analytics - View graphical analytics 📊\n"
         "/currency - Convert between different currencies 💱\n"
+        "/socialmedia - generates a shareable link to the user's expense summary 📜\n"
         "For more info, type /faq or tap the button below 👇"
         
     )
@@ -211,16 +218,33 @@ def callback_query(call):
     elif command == "faq":
         faq(call.message)
     elif command == "currency":  
-        handle_currencies_command(call.message)     
+        handle_currencies_command(call.message)   
+    elif command == "socialmedia":  # New command added here
+        command_socialmedia(call.message)      
     elif DetailedTelegramCalendar.func()(call):  # If it’s a calendar action
         cal(call,bot)
     else:
         response_text = "Command not recognized."
 
     # Acknowledge the button press
-    # Acknowledge the button press
     bot.answer_callback_query(call.id)
+
+     # Check if response_text is empty before sending
+    if response_text:
+        bot.send_message(call.message.chat.id, response_text, parse_mode='Markdown')
+    else:
+        logging.warning("Attempted to send an empty message for command: %s", command)
+        bot.send_message(call.message.chat.id, "Try using /help or explore other commands to see what I can do for you!")
+
     bot.send_message(call.message.chat.id, response_text, parse_mode='Markdown')
+
+def generate_response(_data):
+    try:
+        response = "Your generated response here"  # Replace with actual logic
+        return response
+    except Exception as e:
+        logging.error("Error generating response: %s", e)
+        return "⚠️ There was an error generating the response."
 
 # defines how the /add command has to be handled/processed
 @bot.message_handler(commands=["add"])
@@ -428,6 +452,40 @@ def process_currency_selection(message):
             bot.send_message(chat_id, "An error occurred while calculating spendings. Please try again.")
     else:
         bot.send_message(chat_id, "No spending history available for the current month.")
+
+
+@bot.message_handler(commands=["socialmedia"])
+def command_socialmedia(message):
+    """
+    command_socialmedia(message): Generates a shareable link for the user's expense summary 
+    that can be posted on social media platforms.
+    """
+    chat_id = message.chat.id
+    
+    # Generate or fetch the link to the user's expense summary
+    summary_link = generate_shareable_link(chat_id)
+    
+    if summary_link:
+        # URL encode the summary link
+        encoded_link = urllib.parse.quote(summary_link)
+
+        # Message with options for social media platforms
+        response_message = (
+            "🎉 Your shareable link to your expense summary has been generated successfully!\n"
+            f"{summary_link}\n\n"
+            "Share this link on your favorite social media platforms:\n"
+            f"1. Facebook: [Share on Facebook](https://www.facebook.com/sharer/sharer.php?u={encoded_link})\n"
+            f"2. Twitter: [Share on Twitter](https://twitter.com/share?url={encoded_link}&text=Check%20out%20my%20expense%20summary!)\n"
+            f"3. LinkedIn: [Share on LinkedIn](https://www.linkedin.com/sharing/share-offsite/?url={encoded_link})"
+        )
+        bot.send_message(chat_id, response_message, parse_mode="Markdown")
+    else:
+        bot.send_message(chat_id, "❌ Oops! We couldn't generate a shareable link for you. Please try again later.")
+
+def generate_shareable_link(chat_id):
+    # Placeholder for link generation logic. Replace with actual implementation.
+    return f"https://dollarbot.com/summary/{chat_id}"
+      
 
 def main():
     """

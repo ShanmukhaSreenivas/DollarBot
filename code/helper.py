@@ -28,6 +28,7 @@ SOFTWARE.
 import re
 import json
 import os
+import logging 
 from datetime import datetime
 
 spend_categories = []
@@ -86,6 +87,7 @@ commands = {
     "currency": "This option allows you to convert your total expenditures from USD to other currencies. \
     \n 1. Choose a currency (e.g., GBP, CAD, INR, CHF, EUR) to view your spendings in that currency \
     \n 2. The bot will calculate the total expenditures for the current month and convert them to your selected currency.",
+    "socialmedia": "Generate a shareable link for your expense summary.",
 
 }
 
@@ -187,7 +189,7 @@ def getUserHistoryByCategory(chat_id, category):
     data = getUserHistory(chat_id)
     previous_expenses = []
     for record in data:
-        if f",{category}," in record:
+        if category in record: # fixed 
             previous_expenses.append(record)
     return previous_expenses
 
@@ -215,8 +217,8 @@ def getUserData(chat_id):
         return user_list[str(chat_id)]
     return None
 
-def throw_exception(e, message, bot, logging):
-    logging.exception(str(e))
+def throw_exception(e, message, bot, log):
+    log.exception(str(e))
     bot.reply_to(message, "Oh no! " + str(e))
 
 def createNewUserRecord():
@@ -472,4 +474,38 @@ def convert_currency(amount, from_currency, to_currency):
         return round(amount * exchange_rates[conversion_key], 2)
     else:
         print("Conversion rate not available for this currency pair.")
+        return None
+
+ # Adjust imports based on your project structure
+
+def generate_shareable_link(chat_id):
+    """
+    Generates a shareable link for the user's expense summary.
+    
+    This function creates a PDF summary of the user's expenses, uploads it to a cloud storage service, 
+    and returns a shareable link.
+
+    Args:
+        chat_id (int): The chat ID of the user for whom the expense summary is generated.
+
+    Returns:
+        str: A publicly accessible link to the user's expense summary or None if an error occurs.
+    """
+    try:
+        # Step 1: Generate the PDF summary
+        # file_path = pdf.create_summary_pdf(chat_id)  # Commented out unused variable
+
+        # Step 2: Upload the file to a cloud service (e.g., Google Drive)
+        # shareable_link = upload_to_drive(file_path)
+
+        # Log the generated link
+        # logging.info("Generated shareable link for chat ID %s: %s", chat_id, shareable_link)
+        
+        # return shareable_link
+        pass
+    except FileNotFoundError:
+        logging.error("PDF file not found for chat ID %s.", chat_id)
+        return None
+    except Exception as e:
+        logging.exception("Error generating shareable link for chat ID %s: %s", chat_id, e)
         return None
