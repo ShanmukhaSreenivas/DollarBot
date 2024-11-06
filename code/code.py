@@ -123,6 +123,7 @@ def show_help(m):
         "/budget - Check your budget 💳\n"
         "/analytics - View graphical analytics 📊\n"
         "/currency - Convert between different currencies 💱\n"
+        "/socialmedia - generates a shareable link to the user's expense summary 📜\n"
         "For more info, type /faq or tap the button below 👇"
         
     )
