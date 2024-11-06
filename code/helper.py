@@ -29,8 +29,6 @@ import re
 import json
 import os
 import logging 
-# from code import upload_to_drive
-# from code import pdf 
 from datetime import datetime
 
 spend_categories = []
@@ -511,4 +509,3 @@ def generate_shareable_link(chat_id):
     except Exception as e:
         logging.exception("Error generating shareable link for chat ID %s: %s", chat_id, e)
         return None
-
