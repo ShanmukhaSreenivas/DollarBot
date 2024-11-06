@@ -501,13 +501,14 @@ def generate_shareable_link(chat_id):
         # shareable_link = upload_to_drive(file_path)
 
         # Log the generated link
-        # logging.info(f"Generated shareable link for chat ID %s: %s", chat_id, shareable_link)
+        # logging.info("Generated shareable link for chat ID %s: %s", chat_id, shareable_link)
         
         # return shareable_link
         pass
     except FileNotFoundError:
-       logging.error("PDF file not found for chat ID %s." % chat_id)
+        logging.error("PDF file not found for chat ID %s.", chat_id)
         return None
     except Exception as e:
         logging.exception("Error generating shareable link for chat ID %s: %s", chat_id, e)
         return None
+
