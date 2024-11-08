@@ -523,16 +523,16 @@ def upload_to_dropbox(file_path, dropbox_path):
         logging.exception("Error uploading file to Dropbox: %s", e)
         return None
 
-def run(message, bot):
+def run(message, bot_instance):
     """
-    run(message, bot): This is the main function used to implement the PDF save feature and share it on social media.
+    run(message, bot_instance): This is the main function used to implement the PDF save feature and share it on social media.
     """
     try:
         helper.read_json()
         chat_id = message.chat.id
         user_history = helper.getUserHistory(chat_id)
         msg = "Alright. Creating a PDF of your expense history!"
-        bot.send_message(chat_id, msg)
+        bot_instance.send_message(chat_id, msg)
 
         # Generate and save the expense history figure
         fig = plt.figure()
@@ -550,10 +550,10 @@ def run(message, bot):
         plt.close()
 
         # Create a PDF from generated images
-        pdf = FPDF()
-        pdf.add_page()
-        pdf.image("expense_history.png", x=10, y=10, w=180)
-        pdf.output("expense_report.pdf", "F")
+        pdf_report = FPDF()  # Renamed from `pdf` to `pdf_report` to avoid conflict
+        pdf_report.add_page()
+        pdf_report.image("expense_history.png", x=10, y=10, w=180)
+        pdf_report.output("expense_report.pdf", "F")
 
         # Upload to Dropbox and generate shareable link
         dropbox_link = upload_to_dropbox("expense_report.pdf", "/Shared/expense_report.pdf")
@@ -571,9 +571,9 @@ def run(message, bot):
                 f"2. Twitter: [Share on Twitter]({social_media_links['Twitter']})\n"
                 f"3. LinkedIn: [Share on LinkedIn]({social_media_links['LinkedIn']})"
             )
-            bot.send_message(chat_id, response_message, parse_mode="Markdown")
+            bot_instance.send_message(chat_id, response_message, parse_mode="Markdown")
         else:
-            bot.send_message(chat_id, "❌ Oops! Couldn't upload the PDF. Please try again later.")
+            bot_instance.send_message(chat_id, "❌ Oops! Couldn't upload the PDF. Please try again later.")
 
         # Clean up temporary files
         os.remove("expense_history.png")
@@ -581,7 +581,8 @@ def run(message, bot):
 
     except Exception as e:
         logging.exception(str(e))
-        bot.reply_to(message, "Oops! " + str(e))        
+        bot_instance.reply_to(message, "Oops! " + str(e))
+      
 
 def main():
     """
