@@ -490,7 +490,7 @@ def command_socialmedia(message):
         ) % (dropbox_link, social_media_links['Facebook'], social_media_links['Twitter'], social_media_links['LinkedIn'])
         bot.send_message(chat_id, response_message, parse_mode="Markdown")
     else:
-        bot.send_message(chat_id, "❌ Oops! Couldn't upload the PDF. Please try again later.")
+        bot.send_message(chat_id, "❌ Oops! PDF is already generated")
 
 def generate_social_media_links(dropbox_link):
     """
