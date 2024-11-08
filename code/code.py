@@ -50,6 +50,9 @@ import voice
 import add_recurring
 import currencyconvert
 import urllib.parse
+import dropbox
+import helper  # Assuming helper functions are defined here as per the user’s original structure.
+import pdf 
 assert currencyconvert  # To indicate that it's intentionally imported
 from datetime import datetime
 from jproperties import Properties
@@ -57,6 +60,8 @@ from telebot import types
 from telegram_bot_calendar import DetailedTelegramCalendar
 from add import cal
 from code import pdf  # Adjust the import based on your project structure
+
+DROPBOX_ACCESS_TOKEN = ""
 
 
 configs = Properties()
@@ -234,7 +239,7 @@ def callback_query(call):
         bot.send_message(call.message.chat.id, response_text, parse_mode='Markdown')
     else:
         logging.warning("Attempted to send an empty message for command: %s", command)
-        bot.send_message(call.message.chat.id, "Try using /help or explore other commands to see what I can do for you!")
+        # bot.send_message(call.message.chat.id, "Try using /help or explore other commands to see what I can do for you!")
 
     bot.send_message(call.message.chat.id, response_text, parse_mode='Markdown')
 
@@ -457,35 +462,124 @@ def process_currency_selection(message):
 @bot.message_handler(commands=["socialmedia"])
 def command_socialmedia(message):
     """
-    command_socialmedia(message): Generates a shareable link for the user's expense summary 
-    that can be posted on social media platforms.
+    Generates, hosts a PDF on Dropbox, and provides social media links for sharing.
     """
     chat_id = message.chat.id
     
-    # Generate or fetch the link to the user's expense summary
-    summary_link = generate_shareable_link(chat_id)
+    # Path to the PDF file and Dropbox destination
+    pdf_file_path = "expense_report.pdf"  # Ensure this is the generated PDF path
+    dropbox_path = f"/Shared/{pdf_file_path}"  # Dropbox destination path
     
-    if summary_link:
-        # URL encode the summary link
-        encoded_link = urllib.parse.quote(summary_link)
-
-        # Message with options for social media platforms
+    # Upload PDF to Dropbox
+    dropbox_link = upload_to_dropbox(pdf_file_path, dropbox_path)
+    
+    if dropbox_link:
+        # Generate social media sharing links
+        social_media_links = generate_social_media_links(dropbox_link)
+        
+        # Compose response message
         response_message = (
-            "🎉 Your shareable link to your expense summary has been generated successfully!\n"
-            f"{summary_link}\n\n"
-            "Share this link on your favorite social media platforms:\n"
-            f"1. Facebook: [Share on Facebook](https://www.facebook.com/sharer/sharer.php?u={encoded_link})\n"
-            f"2. Twitter: [Share on Twitter](https://twitter.com/share?url={encoded_link}&text=Check%20out%20my%20expense%20summary!)\n"
-            f"3. LinkedIn: [Share on LinkedIn](https://www.linkedin.com/sharing/share-offsite/?url={encoded_link})"
+            "🎉 Your PDF is ready and hosted successfully!\n"
+            f"{dropbox_link}\n\n"
+            "Share this link on social media:\n"
+            f"1. Facebook: [Share on Facebook]({social_media_links['Facebook']})\n"
+            f"2. Twitter: [Share on Twitter]({social_media_links['Twitter']})\n"
+            f"3. LinkedIn: [Share on LinkedIn]({social_media_links['LinkedIn']})"
         )
         bot.send_message(chat_id, response_message, parse_mode="Markdown")
     else:
-        bot.send_message(chat_id, "❌ Oops! We couldn't generate a shareable link for you. Please try again later.")
+        bot.send_message(chat_id, "❌ Oops! Couldn't upload the PDF. Please try again later.")
 
-def generate_shareable_link(chat_id):
-    # Placeholder for link generation logic. Replace with actual implementation.
-    return f"https://dollarbot.com/summary/{chat_id}"
-      
+def generate_social_media_links(dropbox_link):
+    """
+    Generates social media links to share the Dropbox file link.
+    """
+    encoded_link = urllib.parse.quote(dropbox_link)
+    facebook_url = f"https://www.facebook.com/sharer/sharer.php?u={encoded_link}"
+    twitter_url = f"https://twitter.com/intent/tweet?url={encoded_link}&text=Check%20out%20this%20expense%20report!"
+    linkedin_url = f"https://www.linkedin.com/sharing/share-offsite/?url={encoded_link}"
+    
+    return {
+        "Facebook": facebook_url,
+        "Twitter": twitter_url,
+        "LinkedIn": linkedin_url,
+    }
+
+def upload_to_dropbox(file_path, dropbox_path):
+    """
+    Uploads a file to Dropbox and returns the shared link.
+    """
+    try:
+        dbx = dropbox.Dropbox(DROPBOX_ACCESS_TOKEN)
+        with open(file_path, "rb") as file:
+            dbx.files_upload(file.read(), dropbox_path, mode=dropbox.files.WriteMode.overwrite)
+        
+        # Create a shareable link for the uploaded file
+        shared_link_metadata = dbx.sharing_create_shared_link_with_settings(dropbox_path)
+        return shared_link_metadata.url.replace("?dl=0", "?dl=1")  # Direct download link
+    except Exception as e:
+        logging.exception(f"Error uploading file to Dropbox: {e}")
+        return None
+
+def run(message, bot):
+    """
+    run(message, bot): This is the main function used to implement the PDF save feature and share it on social media.
+    """
+    try:
+        helper.read_json()
+        chat_id = message.chat.id
+        user_history = helper.getUserHistory(chat_id)
+        msg = "Alright. Creating a PDF of your expense history!"
+        bot.send_message(chat_id, msg)
+
+        # Generate and save the expense history figure
+        fig = plt.figure()
+        ax = fig.add_subplot(1, 1, 1)
+        top = 0.8
+        if len(user_history) == 0:
+            plt.text(0.1, top, "No record found!", horizontalalignment="left", verticalalignment="center", transform=ax.transAxes, fontsize=20)
+        for rec in user_history:
+            date, category, amount = rec.split(",")
+            rec_str = f"{amount}$ {category} expense on {date}"
+            plt.text(0, top, rec_str, horizontalalignment="left", verticalalignment="center", transform=ax.transAxes, fontsize=14, bbox=dict(facecolor="red", alpha=0.3))
+            top -= 0.15
+        plt.axis("off")
+        plt.savefig("expense_history.png")
+        plt.close()
+
+        # Create a PDF from generated images
+        pdf = FPDF()
+        pdf.add_page()
+        pdf.image("expense_history.png", x=10, y=10, w=180)
+        pdf.output("expense_report.pdf", "F")
+
+        # Upload to Dropbox and generate shareable link
+        dropbox_link = upload_to_dropbox("expense_report.pdf", "/Shared/expense_report.pdf")
+        
+        if dropbox_link:
+            # Generate social media links
+            social_media_links = generate_social_media_links(dropbox_link)
+
+            # Message with social media links
+            response_message = (
+                "🎉 Your expense report PDF is ready and hosted successfully!\n"
+                f"{dropbox_link}\n\n"
+                "Share this link on social media:\n"
+                f"1. Facebook: [Share on Facebook]({social_media_links['Facebook']})\n"
+                f"2. Twitter: [Share on Twitter]({social_media_links['Twitter']})\n"
+                f"3. LinkedIn: [Share on LinkedIn]({social_media_links['LinkedIn']})"
+            )
+            bot.send_message(chat_id, response_message, parse_mode="Markdown")
+        else:
+            bot.send_message(chat_id, "❌ Oops! Couldn't upload the PDF. Please try again later.")
+
+        # Clean up temporary files
+        os.remove("expense_history.png")
+        os.remove("expense_report.pdf")
+
+    except Exception as e:
+        logging.exception(str(e))
+        bot.reply_to(message, "Oops! " + str(e))        
 
 def main():
     """
@@ -501,3 +595,4 @@ def main():
 
 if __name__ == "__main__":
     main() # type: ignore
+
