@@ -50,9 +50,7 @@ import voice
 import add_recurring
 import currencyconvert
 import urllib.parse
-import dropbox
-import helper  # Assuming helper functions are defined here as per the user’s original structure.
-import pdf 
+import dropbox  # Assuming helper functions are defined here as per the user’s original structure.
 import matplotlib.pyplot as plt
 from fpdf import FPDF
 import os
@@ -472,7 +470,7 @@ def command_socialmedia(message):
     
     # Path to the PDF file and Dropbox destination
     pdf_file_path = "expense_report.pdf"  # Ensure this is the generated PDF path
-    dropbox_path = f"/Shared/{pdf_file_path}"  # Dropbox destination path
+    dropbox_path = "/Shared/%s" % pdf_file_path  # Dropbox destination path
     
     # Upload PDF to Dropbox
     dropbox_link = upload_to_dropbox(pdf_file_path, dropbox_path)
@@ -484,12 +482,12 @@ def command_socialmedia(message):
         # Compose response message
         response_message = (
             "🎉 Your PDF is ready and hosted successfully!\n"
-            f"{dropbox_link}\n\n"
+            "%s\n\n"
             "Share this link on social media:\n"
-            f"1. Facebook: [Share on Facebook]({social_media_links['Facebook']})\n"
-            f"2. Twitter: [Share on Twitter]({social_media_links['Twitter']})\n"
-            f"3. LinkedIn: [Share on LinkedIn]({social_media_links['LinkedIn']})"
-        )
+            "1. Facebook: [Share on Facebook](%s)\n"
+            "2. Twitter: [Share on Twitter](%s)\n"
+            "3. LinkedIn: [Share on LinkedIn](%s)"
+        ) % (dropbox_link, social_media_links['Facebook'], social_media_links['Twitter'], social_media_links['LinkedIn'])
         bot.send_message(chat_id, response_message, parse_mode="Markdown")
     else:
         bot.send_message(chat_id, "❌ Oops! Couldn't upload the PDF. Please try again later.")
@@ -499,9 +497,9 @@ def generate_social_media_links(dropbox_link):
     Generates social media links to share the Dropbox file link.
     """
     encoded_link = urllib.parse.quote(dropbox_link)
-    facebook_url = f"https://www.facebook.com/sharer/sharer.php?u={encoded_link}"
-    twitter_url = f"https://twitter.com/intent/tweet?url={encoded_link}&text=Check%20out%20this%20expense%20report!"
-    linkedin_url = f"https://www.linkedin.com/sharing/share-offsite/?url={encoded_link}"
+    facebook_url = "https://www.facebook.com/sharer/sharer.php?u=%s" % encoded_link
+    twitter_url = "https://twitter.com/intent/tweet?url=%s&text=Check%%20out%%20this%%20expense%%20report!" % encoded_link
+    linkedin_url = "https://www.linkedin.com/sharing/share-offsite/?url=%s" % encoded_link
     
     return {
         "Facebook": facebook_url,
@@ -522,7 +520,7 @@ def upload_to_dropbox(file_path, dropbox_path):
         shared_link_metadata = dbx.sharing_create_shared_link_with_settings(dropbox_path)
         return shared_link_metadata.url.replace("?dl=0", "?dl=1")  # Direct download link
     except Exception as e:
-        logging.exception(f"Error uploading file to Dropbox: {e}")
+        logging.exception("Error uploading file to Dropbox: %s", e)
         return None
 
 def run(message, bot):
