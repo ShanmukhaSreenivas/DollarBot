@@ -53,6 +53,10 @@ import urllib.parse
 import dropbox
 import helper  # Assuming helper functions are defined here as per the user’s original structure.
 import pdf 
+import matplotlib.pyplot as plt
+from fpdf import FPDF
+import os
+
 assert currencyconvert  # To indicate that it's intentionally imported
 from datetime import datetime
 from jproperties import Properties
