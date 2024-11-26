@@ -67,6 +67,7 @@ from telebot import types
 from telegram_bot_calendar import DetailedTelegramCalendar
 from add import cal
 from code import pdf  # Adjust the import based on your project structure
+from savings_goals import save_goal_handler, check_savings_goal, update_savings_goal, reset_savings_goal, savings_summary
 
 DROPBOX_ACCESS_TOKEN = ""
 
@@ -126,22 +127,25 @@ def listener(user_requests):
 bot.set_update_listener(listener)
 
 @bot.message_handler(commands=["help"])
-def show_help(m):
-    chat_id = m.chat.id
-    message = (
-        "*Here are the commands you can use:*\n"
+def show_help(message):
+    chat_id = message.chat.id
+    message_text = (
+        "Here are the commands you can use:\n"
         "/add - Add a new expense 💵\n"
         "/history - View your expense history 📜\n"
         "/budget - Check your budget 💳\n"
         "/analytics - View graphical analytics 📊\n"
         "/currency - Convert between different currencies 💱\n"
-        "/socialmedia - generates a shareable link to the user's expense summary 📜\n"
+        "/setgoal - Set a savings goal 🎯\n"
+        "/checkgoal - Check your savings goal progress 📈\n"
+        "/updategoal - Update your savings progress 💰\n"
+        "/resetgoal - Reset your savings goal 🔄\n"
+        "/summary - View a summary of your savings progress 📜\n"
         "For more info, type /faq or tap the button below 👇"
-        
     )
     keyboard = types.InlineKeyboardMarkup()
-    keyboard.add(types.InlineKeyboardButton("FAQ", callback_data='faq'))
-    bot.send_message(chat_id, message, parse_mode='Markdown', reply_markup=keyboard)
+    keyboard.add(types.InlineKeyboardButton("FAQ", callback_data="faq"))
+    bot.send_message(chat_id, message_text, parse_mode="Markdown", reply_markup=keyboard)
 
 
 @bot.message_handler(commands=["faq"])
@@ -659,6 +663,62 @@ def run_scheduler():
     while True:
         schedule.run_pending()
         time.sleep(1)
+
+@bot.message_handler(commands=["checkgoal"])
+def command_checkgoal(message):
+    """
+    Handles the /checkgoal command to check savings progress.
+    """
+    try:
+        check_savings_goal(bot, message)
+    except Exception as e:
+        logging.error(f"Error in /checkgoal command: {e}")
+        bot.reply_to(message, "An error occurred while checking your savings goal.")
+@bot.message_handler(commands=["updategoal"])
+def command_updategoal(message):
+    """
+    Handles the /updategoal command to update savings progress.
+    """
+    try:
+        update_savings_goal(bot, message)
+    except Exception as e:
+        logging.error(f"Error in /updategoal command: {e}")
+        bot.reply_to(message, "An error occurred while updating your savings goal.")
+@bot.message_handler(commands=["resetgoal"])
+def command_resetgoal(message):
+    """
+    Handles the /resetgoal command to reset the savings goal.
+    """
+    try:
+        reset_savings_goal(bot, message)
+    except Exception as e:
+        logging.error(f"Error in /resetgoal command: {e}")
+        bot.reply_to(message, "An error occurred while resetting your savings goal.")
+
+
+@bot.message_handler(commands=["summary"])
+def command_summary(message):
+    """
+    Handles the /summary command to show a savings summary.
+    """
+    try:
+        savings_summary(bot, message)
+    except Exception as e:
+        logging.error(f"Error in /summary command: {e}")
+        bot.reply_to(message, "An error occurred while showing your savings summary.")
+
+from savings_goals import save_goal_handler
+
+@bot.message_handler(commands=["setgoal"])
+def command_setgoal(message):
+    """
+    Handles the /setgoal command to set a savings goal.
+    """
+    try:
+        save_goal_handler(bot, message)
+    except Exception as e:
+        logging.error(f"Error in /setgoal command: {str(e)}")
+        bot.reply_to(message, "An error occurred while setting your savings goal. Please try again.")
 
 def main():
     """
