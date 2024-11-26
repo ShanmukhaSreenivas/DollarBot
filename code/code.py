@@ -648,9 +648,9 @@ def command_top_category(message):
     top_expense_category.run(message,bot)
 
 # Schedule the reminder to run daily at 8 PM
-# schedule.every().day.at("20:00").do(lambda: check_and_remind_expenses.run(bot))
+schedule.every().day.at("20:00").do(lambda: check_and_remind_expenses.run(bot))
 
-schedule.every(1).minutes.do(lambda: check_and_remind_expenses.run(bot))
+# schedule.every(1).minutes.do(lambda: check_and_remind_expenses.run(bot))
 
 def run_scheduler():
     """

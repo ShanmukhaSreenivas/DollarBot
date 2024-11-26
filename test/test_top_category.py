@@ -1,5 +1,5 @@
 import pytest
-from mock import MagicMock, patch
+from unittest.mock import MagicMock, patch
 
 from code import top_expense_category
 
