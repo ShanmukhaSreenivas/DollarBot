@@ -88,6 +88,7 @@ commands = {
     \n 1. Choose a currency (e.g., GBP, CAD, INR, CHF, EUR) to view your spendings in that currency \
     \n 2. The bot will calculate the total expenditures for the current month and convert them to your selected currency.",
     "socialmedia": "Generate a shareable link for your expense summary.",
+    "savings": "Set a monthly savings goal and track your progress.",
     "top_category": "shows the user's most spent category over the last week or month",
 }
 
@@ -522,3 +523,25 @@ def get_all_user_ids():
     if user_list is None:
         return []
     return list(user_list.keys())
+
+def set_savings_goal(chat_id, goal):
+    user_list = read_json()
+    if str(chat_id) not in user_list:
+        user_list[str(chat_id)] = createNewUserRecord()
+    user_list[str(chat_id)]["savings_goal"] = goal
+    write_json(user_list)
+
+def get_savings_goal(chat_id):
+    user_list = read_json()
+    if str(chat_id) in user_list and "savings_goal" in user_list[str(chat_id)]:
+        return float(user_list[str(chat_id)]["savings_goal"])
+    return None
+
+def calculate_savings_progress(chat_id):
+    savings_goal = get_savings_goal(chat_id)
+    if savings_goal is None:
+        return None, None
+
+    total_spent = calculate_total_spendings(getUserHistory(chat_id))
+    savings = savings_goal - total_spent
+    return savings_goal, savings
