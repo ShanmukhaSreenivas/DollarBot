@@ -1,6 +1,7 @@
 import pytest
 from mock import MagicMock, patch
-from code import helper, code  # Adjust imports based on your folder structure
+from code import code, helper  # Adjust imports based on your folder structure
+# from code import helper
 
 class MockBot:
     """Mock bot class to simulate the bot's behavior."""
@@ -68,3 +69,17 @@ def test_set_savings_goal_invalid_input(mock_bot, mock_message):
     chat_id, text, _, _ = mock_bot.sent_messages[0]
     assert chat_id == 123456
     assert "Invalid input. Please enter a numeric value." in text
+
+#Test No Savings Goal Set
+@patch("code.helper.calculate_savings_progress")
+def test_display_savings_progress_no_goal(mock_calculate_savings_progress, mock_bot, mock_message):
+    """Test displaying progress when no savings goal is set."""
+    mock_calculate_savings_progress.return_value = (None, None)
+
+    code.display_savings_progress(mock_message.chat.id)
+
+    # Assert reminder to set a savings goal
+    assert len(mock_bot.sent_messages) == 1
+    chat_id, text, _, _ = mock_bot.sent_messages[0]
+    assert chat_id == 123456
+    assert "No savings goal set. Use 'Set Goal' to add one." in text
