@@ -227,7 +227,9 @@ def callback_query(call):
     elif command == "currency":  
         handle_currencies_command(call.message)   
     elif command == "socialmedia":  # New command added here
-        command_socialmedia(call.message)      
+        command_socialmedia(call.message)  
+    elif command == "savings":  # Add this condition
+        command_savings(call.message)    
     elif DetailedTelegramCalendar.func()(call):  # If it’s a calendar action
         cal(call,bot)
     else:
@@ -491,6 +493,34 @@ def command_socialmedia(message):
         bot.send_message(chat_id, response_message, parse_mode="Markdown")
     else:
         bot.send_message(chat_id, "❌ Oops! PDF is already generated")
+
+def display_savings_progress(chat_id):
+    savings_goal, savings = helper.calculate_savings_progress(chat_id)
+    if savings_goal is None:
+        bot.send_message(chat_id, "No savings goal set. Use 'Set Goal' to add one.")
+    else:
+        progress_message = (
+            f"Savings Goal: ${savings_goal}\n"
+            f"Spent This Month: ${savings_goal - savings}\n"
+            f"Remaining Savings: ${savings if savings >= 0 else 0}\n"
+            f"Goal Status: {'On Track!' if savings > 0 else 'Goal Exceeded!'}"
+        )
+        bot.send_message(chat_id, progress_message)
+
+
+
+
+@bot.message_handler(commands=["savings"])
+def command_savings(message):
+    """
+    Handles the /savings command for users to set and track savings goals.
+    """
+    chat_id = message.chat.id
+    markup = telebot.types.ReplyKeyboardMarkup(one_time_keyboard=True)
+    markup.add("Set Goal", "View Progress", "Back to Menu")
+    msg = bot.send_message(chat_id, "Choose an option:", reply_markup=markup)
+    bot.register_next_step_handler(msg, handle_savings_options)
+
 
 def generate_social_media_links(dropbox_link):
     """
