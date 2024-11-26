@@ -50,11 +50,13 @@ import voice
 import add_recurring
 import currencyconvert
 import urllib.parse
-import top_expense_category
 import dropbox  # Assuming helper functions are defined here as per the user’s original structure.
 import matplotlib.pyplot as plt
 from fpdf import FPDF
 import os
+
+import schedule
+import threading
 
 assert currencyconvert  # To indicate that it's intentionally imported
 from datetime import datetime
@@ -228,7 +230,10 @@ def callback_query(call):
     elif command == "currency":  
         handle_currencies_command(call.message)   
     elif command == "socialmedia":  # New command added here
-        command_socialmedia(call.message)      
+        command_socialmedia(call.message)
+    elif command == "top_category": 
+        handle_top_category(call.message)      
+      
     elif DetailedTelegramCalendar.func()(call):  # If it’s a calendar action
         cal(call,bot)
     else:
@@ -586,6 +591,9 @@ def run(message, bot_instance):
       
 
 @bot.message_handler(commands=['top_category'])
+def handle_top_category(message):
+    top_expense_category(message)
+
 def top_expense_category(message):
     """
     run(message, bot_instance): Main function for the Top Expense Category Insight feature.
@@ -625,8 +633,42 @@ def top_expense_category(message):
         logging.exception(f"Error in run function for Top Expense Category Insight: {str(e)}")
         bot.reply_to(message, f"An error occurred: {str(e)}")
 
-def handle_top_category(message):
-    top_expense_category(message)
+def check_and_remind_expenses():
+    """
+    Checks if a user has logged any expenses for the day and sends a reminder if none are found.
+    """
+    try:
+        # Replace this with actual logic to retrieve user IDs
+        user_ids = helper.get_all_user_ids()  # Example function to get all bot users
+
+        for chat_id in user_ids:
+            # Fetch user history
+            user_history = helper.getUserHistory(chat_id)
+
+            # Filter today's expenses
+            today = datetime.now().strftime('%d-%b-%Y')
+            today_expenses = [
+                record for record in user_history
+                if record.split(',')[0] == today
+            ]
+
+            # If no expenses for today, send a reminder
+            if not today_expenses:
+                bot.send_message(chat_id, "Don't forget to log your expenses today! 📝")
+
+    except Exception as e:
+        logging.exception(f"Error in expense reminder: {str(e)}")
+
+# Schedule the reminder to run daily at 8 PM
+schedule.every().day.at("20:00").do(check_and_remind_expenses)
+
+def run_scheduler():
+    """
+    Runs the schedule in a loop alongside the bot.
+    """
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
 
 def main():
     """
@@ -642,4 +684,11 @@ def main():
 
 if __name__ == "__main__":
     main() # type: ignore
+    # Start the scheduler in a separate thread
+    scheduler_thread = threading.Thread(target=run_scheduler)
+    scheduler_thread.daemon = True  # Ensures the thread closes when the main program exits
+    scheduler_thread.start()
+
+    # Start the bot
+    bot.polling(none_stop=True)
 
