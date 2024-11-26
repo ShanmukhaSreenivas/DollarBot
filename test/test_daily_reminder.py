@@ -1,5 +1,5 @@
 import pytest
-from unittest.mock import patch, MagicMock
+from mock import patch, MagicMock
 from datetime import datetime
 
 # Import the daily expense reminder function
@@ -34,7 +34,7 @@ def test_reminder_with_no_expenses(mock_get_user_history, mock_get_all_user_ids,
     ]
 
     # Run the function
-    check_and_remind_expenses()
+    check_and_remind_expenses.run(mock_bot)
 
     # Assertions
     assert len(mock_bot.sent_messages) == 1
@@ -57,7 +57,7 @@ def test_reminder_with_expenses(mock_get_user_history, mock_get_all_user_ids, mo
     ]
 
     # Run the function
-    check_and_remind_expenses()
+    check_and_remind_expenses.run(mock_bot)
 
     # Assertions
     assert len(mock_bot.sent_messages) == 0  # No reminder should be sent
@@ -74,7 +74,7 @@ def test_reminder_error_handling(mock_get_user_history, mock_get_all_user_ids, m
     mock_get_user_history.side_effect = Exception("Mocked exception")
 
     # Run the function
-    check_and_remind_expenses()
+    check_and_remind_expenses.run(mock_bot)
 
     # Assertions
     assert len(mock_bot.sent_messages) == 0  # No message should be sent
