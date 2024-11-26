@@ -509,3 +509,16 @@ def generate_shareable_link(chat_id):
     except Exception as e:
         logging.exception("Error generating shareable link for chat ID %s: %s", chat_id, e)
         return None
+
+
+def get_all_user_ids():
+    """
+    Retrieve all user IDs from the expense record.
+
+    Returns:
+        list: A list of all user IDs.
+    """
+    user_list = read_json()
+    if user_list is None:
+        return []
+    return list(user_list.keys())
