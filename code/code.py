@@ -50,7 +50,6 @@ import voice
 import add_recurring
 import currencyconvert
 import top_expense_category
-import check_and_remind_expenses
 import urllib.parse
 import dropbox  # Assuming helper functions are defined here as per the user’s original structure.
 import matplotlib.pyplot as plt
@@ -234,6 +233,7 @@ def callback_query(call):
     elif command == "socialmedia":  # New command added here
         command_socialmedia(call.message)
     elif command == "top_category": 
+        handle_top_category(call.message)      
     elif command == "savings":  # Add this condition
         command_savings(call.message)    
     elif DetailedTelegramCalendar.func()(call):  # If it’s a calendar action
@@ -643,14 +643,78 @@ def run(message, bot_instance):
       
 
 @bot.message_handler(commands=['top_category'])
-def command_top_category(message):
+def handle_top_category(message):
     top_expense_category.run(message,bot)
 
+# def top_expense_category(message):
+#     """
+#     run(message, bot_instance): Main function for the Top Expense Category Insight feature.
+#     Fetches and displays the user's top expense category based on recorded data.
+#     """
+#     try:
+#         # Read the JSON data
+#         helper.read_json()
+#         chat_id = message.chat.id
+#         user_history = helper.getUserHistory(chat_id)
+
+#         # Check if user history exists
+#         if not user_history or len(user_history) == 0:
+#             bot.send_message(chat_id, "No spending records found. Start adding expenses to track your spending!")
+#             return
+
+#         # Aggregate expenses by category
+#         category_totals = {}
+#         for record in user_history:
+#             date, category, amount = record.split(',')
+#             amount = float(amount.strip())
+#             category_totals[category] = category_totals.get(category, 0) + amount
+
+#         # Find the top expense category
+#         top_category = max(category_totals, key=category_totals.get)
+#         top_amount = category_totals[top_category]
+
+#         # Create and send the response message
+#         response_message = (
+#             f"🏆 Your top expense category is: **{top_category}**\n"
+#             f"💸 Total spent: **${top_amount:.2f}**\n\n"
+#             "Keep tracking your expenses to achieve your financial goals!"
+#         )
+#         bot.send_message(chat_id, response_message, parse_mode="Markdown")
+
+#     except Exception as e:
+#         logging.exception(f"Error in run function for Top Expense Category Insight: {str(e)}")
+#         bot.reply_to(message, f"An error occurred: {str(e)}")
+
+def check_and_remind_expenses():
+    """
+    Checks if a user has logged any expenses for the day and sends a reminder if none are found.
+    """
+    try:
+        # Replace this with actual logic to retrieve user IDs
+        user_ids = helper.get_all_user_ids()  # Example function to get all bot users
+
+        for chat_id in user_ids:
+            # Fetch user history
+            user_history = helper.getUserHistory(chat_id)
+
+            # Filter today's expenses
+            today = datetime.now().strftime('%d-%b-%Y')
+            today_expenses = [
+                record for record in user_history
+                if record.split(',')[0] == today
+            ]
+
+            # If no expenses for today, send a reminder
+            if not today_expenses:
+                bot.send_message(chat_id, "Don't forget to log your expenses today! 📝")
+
+    except Exception as e:
+        logging.exception(f"Error in expense reminder: {str(e)}")
 
 # Schedule the reminder to run daily at 8 PM
-schedule.every().day.at("20:00").do(lambda: check_and_remind_expenses.run(bot))
+# schedule.every().day.at("20:00").do(check_and_remind_expenses)
 
-# schedule.every(1).minutes.do(lambda: check_and_remind_expenses.run(bot))
+schedule.every(1).minutes.do(check_and_remind_expenses)
 
 def run_scheduler():
     """
