@@ -20,16 +20,14 @@ jobs:
           python -m pip install --upgrade pip
           pip install pandas
           pip install pylint
-          pip install -U Flask
-          pip install -U flask-cors
           pip install pytest
-          pip install pytest-cov
 
       - name: Run tests and generate coverage
         run: |
           cd test
-          coverage run -m -a test_search
-          coverage run -m -a tests
+          coverage run -m -a test_top_category
+          coverage run -m -a test_savings
+          coverage run -m -a test_daily_reminder
 
       - name: Upload coverage report to Codecov
         run: |
