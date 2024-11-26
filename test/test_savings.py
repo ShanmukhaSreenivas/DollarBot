@@ -42,3 +42,17 @@ def test_set_savings_goal(mock_set_savings_goal, mock_bot, mock_message):
     assert "Savings goal of $500 set successfully!" in text
 
 #Test Viewing Savings Progress
+@patch("code.helper.calculate_savings_progress")
+def test_display_savings_progress(mock_calculate_savings_progress, mock_bot, mock_message):
+    """Test the savings progress display."""
+    mock_calculate_savings_progress.return_value = (1000, 200)
+
+    code.display_savings_progress(mock_message.chat.id)
+
+    # Assert the correct progress is displayed
+    assert len(mock_bot.sent_messages) == 1
+    chat_id, text, _, _ = mock_bot.sent_messages[0]
+    assert chat_id == 123456
+    assert "Savings Goal: $1000" in text
+    assert "Remaining Savings: $200" in text
+    assert "Goal Status: On Track!" in text
