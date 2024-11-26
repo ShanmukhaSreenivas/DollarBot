@@ -88,7 +88,7 @@ commands = {
     \n 1. Choose a currency (e.g., GBP, CAD, INR, CHF, EUR) to view your spendings in that currency \
     \n 2. The bot will calculate the total expenditures for the current month and convert them to your selected currency.",
     "socialmedia": "Generate a shareable link for your expense summary.",
-
+    "top_category": "shows the user's most spent category over the last week or month",
 }
 
 dateFormat = "%d-%b-%Y"
