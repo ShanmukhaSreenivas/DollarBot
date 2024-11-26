@@ -80,22 +80,34 @@ With simple commands, this bot allows you to:
   
   **Recurring Expenses:** Added the functionality for users to track recurring expenses. This feature facilitates the management of regularly occurring financial commitments.
   
+  **Voice Command Feature:** This functionality allows users to record expenses and access different features by speaking commands. It provides hands-free control, making financial management more convenient and accessible, especially for users on the go.
+  
+  **Social Media Integration:** A convenient feature that generates shareable links for expense summaries. Users can easily share their summaries on popular social media platforms like Facebook, Twitter, and LinkedIn. 
+  
+  **Report Generation:** Allows users to generate a detailed spending breakdown over a customizable date range. This feature provides valuable insights into spending patterns for specific time periods, helping users track and analyze their financial habits more effectively.
+  
+  **Summary Generation:** command delivers a quick, high-level overview of spending by category for a specified period. This feature provides users with a concise breakdown allowing for a snapshot of overall spending without diving into detailed transactions.
+  
 # :star: What's New? - ( Latest version )
 
 -### Demo Video
 For a quick walkthrough of the new features, check out the [demo video here](https://drive.google.com/file/d/1KgL1cUITotW6KhUY0iBWnY_TGmof85OS/view?usp=drive_link).
 
 
-- **Voice Command Feature:** This functionality allows users to record expenses and access different features by speaking commands. It provides hands-free control, making financial management more convenient and accessible, especially for users on the go. With this feature, users can quickly log expenses without typing, enhancing productivity.
-- **UI Enhancements:** The menu now includes inline keyboard buttons, creating a more streamlined and intuitive interface. Users can navigate and perform actions effortlessly, making the application not only visually appealing but also simpler to use, reducing time spent on finding features.
-- **Enhanced Error Handling:** Custom exceptions have been introduced to handle errors in a more targeted way. This enhancement ensures the app can recover smoothly from unexpected issues, offering a more robust experience for users and reducing interruptions during use.
-- **Social Media Integration:** A convenient feature that generates shareable links for expense summaries. Users can easily share their summaries on popular social media platforms like Facebook, Twitter, and LinkedIn. With a simple command, DollarBot generates a custom link, URL-encodes it, and provides preformatted sharing options for each platform, allowing users to seamlessly showcase their expense management insights.
-- **Report Generation:** Allows users to generate a detailed spending breakdown over a customizable date range. This feature provides valuable insights into spending patterns for specific time periods, helping users track and analyze their financial habits more effectively.
-- **Summary Generation:** command delivers a quick, high-level overview of spending by category for a specified period. This feature provides users with a concise breakdown allowing for a snapshot of overall spending without diving into detailed transactions.
-- **Bug Fixes and Improved Flow:** Addressed numerous bugs and issues to enhance the overall stability and user experience of the application. The latest updates include fixes to issues related to the previous flow of the application, ensuring a smoother and more reliable user interaction. Our commitment to quality assurance and user satisfaction is reflected in these improvements.
+- **Top Expense Category Insight:** This feature identifies the user’s top expense category over a specific time frame, such as a week or month. It provides a clear picture of the areas where the user spends the most, helping them focus on expense management in critical categories.
+  
+- **Daily Expense Reminder:** A scheduling feature that sends users a reminder to log their daily expenses if none have been recorded. This ensures users maintain a consistent habit of tracking their expenses and stay on top of their financial activities.
+  
+- **Set Savings Goal:** Users can set a monthly savings goal and receive weekly notifications about their progress. At the end of each week, the bot evaluates whether users are on track to meet their savings goals and provides recommendations on adjusting spending. This feature integrates seamlessly with budget tracking, offering real-time feedback to encourage better financial habits.
+
+- **Savings Goal Management:** Savings Goal Management allows users to set, track, and manage their financial savings goals seamlessly. With this feature, users can define a target amount, update their progress, view detailed summaries, and receive milestone notifications, ensuring a clear and motivational path to achieving their financial objectives.
+
+- **Enhanced Error Handling:** Introduced targeted custom exceptions to manage errors effectively during various operations, including command processing, expense recording, and report generation. Improved error logging for critical components, making it easier to debug and maintain the application. Added fallback messages for invalid inputs, ensuring the bot provides clear guidance to users when unexpected inputs are encountered.
+  
+- **Bug Fixes and Improved Flow:** Addressed issues with inconsistent navigation and menu commands, ensuring users experience smoother and more reliable interaction with the bot. Addressed issues with inconsistent navigation and menu commands, ensuring users experience smoother and more reliable interaction with the bot. Improved the handling of date-specific commands to ensure correct parsing and results across different locales and formats.
   
 
-Are you a developer? <a href="https://github.com/tpanati/DollarBot/blob/main/README.md">Click here: For Developers and Future Contributors</a>
+Are you a developer? <a href="https://github.com/ShanmukhaSreenivas/DollarBot/blob/main/README.md">Click here: For Developers and Future Contributors</a>
 
 # :rocket: Installation and Setup
 
@@ -321,12 +333,10 @@ Some possible future enhancements are as follows:
 3.	**Cross-Platform Compatibility:** Develop setup scripts specifically for Windows users to ensure a smooth and hassle-free installation process on this platform. Expand DollarBot's accessibility to a broader user base by optimizing its performance on Windows operating systems.
 4.	**Natural Language Processing (NLP) Integration:** Enhance DollarBot's user experience by implementing Natural Language Processing (NLP) capabilities. Enable the bot to respond to casual conversation, making interactions more intuitive and user-friendly. Users can engage with DollarBot in a more conversational manner, improving overall usability.
 5.  **Integration with Financial APIs:** Integrate with popular financial APIs to fetch real-time transaction data from bank accounts and credit cards. This enhancement provides users with up-to-the-minute financial information, ensuring accuracy and completeness in their spending records.
-6.  **Multi-Currency Support:** Extend DollarBot's functionality to support multiple currencies, catering to users with diverse financial portfolios. This enhancement ensures accurate tracking and reporting for users dealing with expenses in different currencies.
-7.  **Smart Notifications and Alerts:** Implement intelligent notification features to alert users about budget limits, unusual spending patterns, or upcoming bills. These proactive notifications will empower users to make informed financial decisions in real-time.
-8.  **Secure Cloud Sync and Backup:** Implement a secure cloud sync and backup feature to ensure users' data is protected and accessible across devices. This enhancement provides users with peace of mind, knowing that their financial data is safely stored and can be easily recovered if needed.
-9. **Gamified Savinng goals:** Add gamification elements to help users stay motivated. Reward users for staying under budget or achieving savings milestones with badges or points, adding a fun aspect to saving money.
-10. **Tax-Friendly Expense Tracking:** Create tax-friendly categories and generate year-end summaries to simplify filing taxes by organizing deductible expenses for easy access.
-11. **Mobile app version:**: Develop a standalone mobile application for DollarBot with push notifications for budget alerts, daily summaries, and other financial reminders.
+6.  **Smart Notifications and Alerts:** Implement intelligent notification features to alert users about budget limits, unusual spending patterns, or upcoming bills. These proactive notifications will empower users to make informed financial decisions in real-time.
+7.  **Secure Cloud Sync and Backup:** Implement a secure cloud sync and backup feature to ensure users' data is protected and accessible across devices. This enhancement provides users with peace of mind, knowing that their financial data is safely stored and can be easily recovered if needed.
+8. **Tax-Friendly Expense Tracking:** Create tax-friendly categories and generate year-end summaries to simplify filing taxes by organizing deductible expenses for easy access.
+9. **Mobile app version:**: Develop a standalone mobile application for DollarBot with push notifications for budget alerts, daily summaries, and other financial reminders.
 :heart: Acknowledgements
 ---
 We would like to extend our heartfelt thanks to Dr. Timothy Menzies for guiding us through the process of building a strong Software Engineering project. We would also like to express our gratitude to the teaching assistants: San Gilson, Andre Lustosa, Xueqi (Sherry) Yang, Yasitha Rajapaksha, and Rahul Yedida, for their invaluable support throughout this project.
@@ -347,4 +357,4 @@ This project is licensed under the terms of the MIT license. Please check [LICEN
 
 # :calling: Support
 
-For any support, email us at `slabba@ncsu.edu`
+For any support, email us at `ssdeety@gmail.com`
