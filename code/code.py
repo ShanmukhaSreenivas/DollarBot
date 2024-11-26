@@ -233,7 +233,7 @@ def callback_query(call):
     elif command == "socialmedia":  # New command added here
         command_socialmedia(call.message)
     elif command == "top_category": 
-        handle_top_category(call.message)      
+        command_top_category(call.message)
     elif command == "savings":  # Add this condition
         command_savings(call.message)    
     elif DetailedTelegramCalendar.func()(call):  # If it’s a calendar action
@@ -643,7 +643,7 @@ def run(message, bot_instance):
       
 
 @bot.message_handler(commands=['top_category'])
-def handle_top_category(message):
+def command_top_category(message):
     top_expense_category.run(message,bot)
 
 # def top_expense_category(message):
