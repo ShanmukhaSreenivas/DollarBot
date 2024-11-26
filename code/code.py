@@ -507,7 +507,29 @@ def display_savings_progress(chat_id):
         )
         bot.send_message(chat_id, progress_message)
 
+def set_savings_goal(message):
+    try:
+        chat_id = message.chat.id
+        goal = float(message.text)
+        helper.set_savings_goal(chat_id, goal)
+        bot.send_message(chat_id, f"Savings goal of ${goal} set successfully!")
+    except ValueError:
+        bot.send_message(chat_id, "Invalid input. Please enter a numeric value.")
 
+
+def handle_savings_options(message):
+    chat_id = message.chat.id
+    option = message.text
+
+    if option == "Set Goal":
+        msg = bot.send_message(chat_id, "Enter your monthly savings goal (in $):")
+        bot.register_next_step_handler(msg, set_savings_goal)
+    elif option == "View Progress":
+        display_savings_progress(chat_id)
+    elif option == "Back to Menu":
+        start_and_menu_command(message)  # Redirect to the main menu
+    else:
+        bot.send_message(chat_id, "Invalid option. Please try again.")
 
 
 @bot.message_handler(commands=["savings"])
