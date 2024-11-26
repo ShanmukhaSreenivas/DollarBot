@@ -511,7 +511,18 @@ def generate_shareable_link(chat_id):
         logging.exception("Error generating shareable link for chat ID %s: %s", chat_id, e)
         return None
 
+def set_savings_goal(chat_id, goal):
+    user_list = read_json()
+    if str(chat_id) not in user_list:
+        user_list[str(chat_id)] = createNewUserRecord()
+    user_list[str(chat_id)]["savings_goal"] = goal
+    write_json(user_list)
 
+def get_savings_goal(chat_id):
+    user_list = read_json()
+    if str(chat_id) in user_list and "savings_goal" in user_list[str(chat_id)]:
+        return float(user_list[str(chat_id)]["savings_goal"])
+    return None
 
 def calculate_savings_progress(chat_id):
     savings_goal = get_savings_goal(chat_id)
