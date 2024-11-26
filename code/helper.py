@@ -532,3 +532,14 @@ def calculate_savings_progress(chat_id):
     total_spent = calculate_total_spendings(getUserHistory(chat_id))
     savings = savings_goal - total_spent
     return savings_goal, savings
+
+def get_all_user_ids():
+    """
+    Retrieve all user IDs from the expense record JSON file.
+    Returns:
+        list: A list of all user IDs.
+    """
+    user_list = read_json()
+    if user_list is None:
+        return []
+    return list(user_list.keys())
