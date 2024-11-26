@@ -3,7 +3,7 @@ import logging
 from datetime import datetime
 from exception import InvalidAmountError, InvalidCategoryError
 
-def top_expense_category(message, bot):
+def run(message, bot):
     """
     Provides the user's top expense category based on recorded data.
     
@@ -15,10 +15,12 @@ def top_expense_category(message, bot):
         Sends a message to the user with the top expense category and the total amount.
     """
     try:
-        # Fetch user's expense history
+        # Read the JSON data
+        helper.read_json()
         chat_id = message.chat.id
         user_history = helper.getUserHistory(chat_id)
-        
+
+        # Check if user history exists
         if not user_history or len(user_history) == 0:
             bot.send_message(chat_id, "No spending records found. Start adding expenses to track your spending!")
             return
@@ -34,15 +36,16 @@ def top_expense_category(message, bot):
         top_category = max(category_totals, key=category_totals.get)
         top_amount = category_totals[top_category]
 
-        # Respond to the user
-        bot.send_message(
-            chat_id,
-            f"Your top expense category is '{top_category}' with a total spending of ${top_amount:.2f}."
+        # Create and send the response message
+        response_message = (
+            f"🏆 Your top expense category is: **{top_category}**\n"
+            f"💸 Total spent: **${top_amount:.2f}**\n\n"
+            "Keep tracking your expenses to achieve your financial goals!"
         )
+        bot.send_message(chat_id, response_message, parse_mode="Markdown")
 
     except Exception as e:
-        logging.exception(f"Error in top_expense_category: {str(e)}")
-        bot.send_message(chat_id, f"An error occurred while fetching your top expense category: {str(e)}")
+        logging.exception(f"Error in run function for Top Expense Category Insight: {str(e)}")
+        bot.reply_to(message, f"An error occurred: {str(e)}")
 
 # This function can now be added to the bot's command handlers for deployment.
-
