@@ -69,14 +69,14 @@ def test_set_savings_goal_case_2(mock_bot, mock_helper):
     assert len(mock_bot.sent_messages) == 1
     assert "Savings goal of $200.0 set successfully!" in mock_bot.sent_messages[0][1]
 
-def test_set_savings_goal_case_3(mock_bot, mock_helper):
+def test_set_savings_goal_case_4(mock_bot, mock_helper):
     """Test case 3: Valid goal setting."""
     message = MockMessage(chat_id=12347, text="300")
     set_savings_goal(message, mock_bot, mock_helper)
     assert len(mock_bot.sent_messages) == 1
     assert "Savings goal of $300.0 set successfully!" in mock_bot.sent_messages[0][1]
 
-def test_set_savings_goal_case_4(mock_bot, mock_helper):
+def test_set_savings_goal_case_3(mock_bot, mock_helper):
     """Test case 4: Valid goal setting."""
     message = MockMessage(chat_id=12348, text="400")
     set_savings_goal(message, mock_bot, mock_helper)
