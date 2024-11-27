@@ -12,6 +12,9 @@
 ![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/ShanmukhaSreenivas/DollarBot)
 [![Build Status](https://app.travis-ci.com/usmanwardag/dollar_bot.svg?branch=main)](https://app.travis-ci.com/usmanwardag/dollar_bot)
 [![Unit Tests](https://github.com/ShanmukhaSreenivas/DollarBot/actions/workflows/tests.yml/badge.svg)](https://github.com/ShanmukhaSreenivas/DollarBot/actions/workflows/tests.yml)
+[![Python Style Checker](https://github.com/ShanmukhaSreenivas/DollarBot/actions/workflows/python_style_checker.yml/badge.svg)](https://github.com/ShanmukhaSreenivas/DollarBot/actions/workflows/python_style_checker.yml)
+[![Lint Python](https://github.com/ShanmukhaSreenivas/DollarBot/actions/workflows/syntax_checker.yml/badge.svg)](https://github.com/ShanmukhaSreenivas/DollarBot/actions/workflows/syntax_checker.yml)
+[![Code Formatting](https://github.com/ShanmukhaSreenivas/DollarBot/actions/workflows/code_formatting.yml/badge.svg)](https://github.com/ShanmukhaSreenivas/DollarBot/actions/workflows/code_formatting.yml)
 
 # 💰 DollarBot 💰
 
