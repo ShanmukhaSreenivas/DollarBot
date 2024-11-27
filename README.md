@@ -11,6 +11,7 @@
 ![GitHub issues](https://img.shields.io/github/issues-raw/ShanmukhaSreenivas/DollarBot)
 ![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/ShanmukhaSreenivas/DollarBot)
 [![Build Status](https://app.travis-ci.com/usmanwardag/dollar_bot.svg?branch=main)](https://app.travis-ci.com/usmanwardag/dollar_bot)
+[![Unit Tests](https://github.com/ShanmukhaSreenivas/DollarBot/actions/workflows/tests.yml/badge.svg)](https://github.com/ShanmukhaSreenivas/DollarBot/actions/workflows/tests.yml)
 
 # 💰 DollarBot 💰
 
