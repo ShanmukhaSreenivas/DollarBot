@@ -1,7 +1,7 @@
 # &nbsp;&nbsp;SE Project 3
 
 The following video showcases our project with significant changes:
-[Updated Project Video](https://youtu.be/bJzWYdG4ug4)
+[Updated Project Video](https://youtu.be/KvNUQUoFNpk)
 
 ### &nbsp;&nbsp; Improvements in Project 3
 
