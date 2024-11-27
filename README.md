@@ -96,12 +96,11 @@ For a quick walkthrough of the new features, check out the [demo video here](htt
   
 - **Set Savings Goal:** Users can set a monthly savings goal and receive weekly notifications about their progress. At the end of each week, the bot evaluates whether users are on track to meet their savings goals and provides recommendations on adjusting spending. This feature integrates seamlessly with budget tracking, offering real-time feedback to encourage better financial habits.
 
-- **Savings Goal Management:** Savings Goal Management allows users to set, track, and manage their financial savings goals seamlessly. With this feature, users can define a target amount, update their progress, view detailed summaries, and receive milestone notifications, ensuring a clear and motivational path to achieving their financial objectives.
-
 - **Enhanced Error Handling:** Introduced targeted custom exceptions to manage errors effectively during various operations, including command processing, expense recording, and report generation. Improved error logging for critical components, making it easier to debug and maintain the application. Added fallback messages for invalid inputs, ensuring the bot provides clear guidance to users when unexpected inputs are encountered.
   
 - **Bug Fixes and Improved Flow:** Addressed issues with inconsistent navigation and menu commands, ensuring users experience smoother and more reliable interaction with the bot. Addressed issues with inconsistent navigation and menu commands, ensuring users experience smoother and more reliable interaction with the bot. Improved the handling of date-specific commands to ensure correct parsing and results across different locales and formats.
-  
+
+- **Savings Goal Management:** Savings Goal Management allows users to set, track, and manage their financial savings goals seamlessly. With this feature, users can define a target amount, update their progress, view detailed summaries, and receive milestone notifications, ensuring a clear and motivational path to achieving their financial objectives.
 
 Are you a developer? <a href="https://github.com/ShanmukhaSreenivas/DollarBot/blob/main/README.md">Click here: For Developers and Future Contributors</a>
 
