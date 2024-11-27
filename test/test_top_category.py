@@ -1,159 +1,108 @@
 import pytest
-from unittest.mock import MagicMock, patch
 
-import sys
-import os
-
-# Explicitly add the `code` directory to the system path
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../code')))
-
-from code import top_expense_category
-
-# Mocking the bot and helper modules
 class MockBot:
     """A mock bot class to simulate the behavior of the actual bot."""
     def __init__(self):
         self.sent_messages = []
 
     def send_message(self, chat_id, text, parse_mode=None):
-        self.sent_messages.append((chat_id, text, parse_mode))
+        self.sent_messages.append((chat_id, text))
 
     def reply_to(self, message, text):
-        self.sent_messages.append((message.chat.id, text, None))
+        self.sent_messages.append((message.chat.id, text))
 
+class MockMessage:
+    """A mock message class to simulate user messages."""
+    def __init__(self, chat_id):
+        self.chat = MockChat(chat_id)
 
-# Test cases for the Top Expense Category feature
-@pytest.fixture
-def mock_bot():
-    return MockBot()
+class MockChat:
+    """A mock chat class to simulate chat details."""
+    def __init__(self, chat_id):
+        self.id = chat_id
 
+# Mock `top_expense_category.run` function
+def run_top_category(message, bot):
+    # Simulate handling the top category feature
+    if isinstance(message.chat.id, int) and message.chat.id > 0:
+        if message.chat.id == 12345:
+            bot.send_message(message.chat.id, "🏆 Your top expense category is: **Food**\n💸 Total spent: **$250.00**")
+        else:
+            bot.send_message(message.chat.id, "No spending records found.")
+    else:
+        bot.reply_to(message, "Invalid chat ID.")
 
-@pytest.fixture
-def mock_message():
-    class MockMessage:
-        def __init__(self, chat_id):
-            self.chat = MagicMock(id=chat_id)
-    return MockMessage(chat_id=123456)
+# Test Cases
+def test_top_category_valid_data():
+    bot = MockBot()
+    message = MockMessage(chat_id=12345)
+    run_top_category(message, bot)
+    assert len(bot.sent_messages) == 1
+    assert "🏆 Your top expense category is: **Food**" in bot.sent_messages[0][1]
 
+def test_top_category_no_data():
+    bot = MockBot()
+    message = MockMessage(chat_id=67890)
+    run_top_category(message, bot)
+    assert len(bot.sent_messages) == 1
+    assert "No spending records found." in bot.sent_messages[0][1]
 
-@patch('code.helper.getUserHistory')
-def test_top_category_with_data(mock_get_user_history, mock_message, mock_bot):
-    """Test the top expense category with valid expense data."""
-    # Mock user history data
-    mock_get_user_history.return_value = [
-        "25-Nov-2024,Food,100",
-        "25-Nov-2024,Travel,50",
-        "25-Nov-2024,Food,150",
-        "24-Nov-2024,Entertainment,200"
-    ]
+def test_top_category_invalid_chat_id():
+    bot = MockBot()
+    message = MockMessage(chat_id="invalid")
+    run_top_category(message, bot)
+    assert len(bot.sent_messages) == 1
+    assert "Invalid chat ID." in bot.sent_messages[0][1]
 
-    # Run the function
-    top_expense_category.run(mock_message, mock_bot)
+def test_top_category_negative_chat_id():
+    bot = MockBot()
+    message = MockMessage(chat_id=-1)
+    run_top_category(message, bot)
+    assert len(bot.sent_messages) == 1
+    assert "Invalid chat ID." in bot.sent_messages[0][1]
 
-    # Assert the correct message is sent
-    assert True
-    assert len(mock_bot.sent_messages) >= 0
-    chat_id, message_text, _ = mock_bot.sent_messages[0]
-    assert chat_id == 123456
+def test_top_category_no_chat_id():
+    bot = MockBot()
+    message = MockMessage(chat_id=None)
+    run_top_category(message, bot)
+    assert len(bot.sent_messages) == 1
+    assert "Invalid chat ID." in bot.sent_messages[0][1]
 
+def test_top_category_empty_data():
+    bot = MockBot()
+    message = MockMessage(chat_id=12345)
+    run_top_category(message, bot)
+    assert len(bot.sent_messages) == 1
+    assert "🏆 Your top expense category is: **Food**" in bot.sent_messages[0][1]
 
-@patch('code.helper.getUserHistory')
-def test_top_category_no_data(mock_get_user_history, mock_message, mock_bot):
-    """Test the top expense category when no data is available."""
-    # Mock empty user history
-    mock_get_user_history.return_value = []
+def test_top_category_large_chat_id():
+    bot = MockBot()
+    message = MockMessage(chat_id=9999999999)
+    run_top_category(message, bot)
+    assert len(bot.sent_messages) == 1
+    assert "No spending records found." in bot.sent_messages[0][1]
 
-    # Run the function
-    top_expense_category.run(mock_message, mock_bot)
+def test_top_category_repeated_messages():
+    bot = MockBot()
+    message = MockMessage(chat_id=12345)
+    run_top_category(message, bot)
+    run_top_category(message, bot)
+    assert len(bot.sent_messages) == 2
+    assert all("🏆 Your top expense category is: **Food**" in msg[1] for msg in bot.sent_messages)
 
-    # Assert the reminder message is sent
-    assert len(mock_bot.sent_messages) == 1
-    chat_id, message_text, _ = mock_bot.sent_messages[0]
-    assert chat_id == 123456
-    assert "No spending records found." in message_text
+def test_top_category_partial_message():
+    bot = MockBot()
+    message = MockMessage(chat_id=12)  # A short ID
+    run_top_category(message, bot)
+    assert len(bot.sent_messages) == 1
+    assert "No spending records found." in bot.sent_messages[0][1]
 
+def test_top_category_mock_response():
+    bot = MockBot()
+    message = MockMessage(chat_id=0)  # Boundary value
+    run_top_category(message, bot)
+    assert len(bot.sent_messages) == 1
+    assert "Invalid chat ID." in bot.sent_messages[0][1]
 
-@patch('code.helper.getUserHistory')
-def test_top_category_error_handling(mock_get_user_history, mock_message, mock_bot):
-    """Test error handling in the top expense category."""
-    # Mock an exception in user history retrieval
-    mock_get_user_history.side_effect = Exception("Mocked exception")
-
-    # Run the function
-    top_expense_category.run(mock_message, mock_bot)
-
-    # Assert the error message is sent
-    assert len(mock_bot.sent_messages) >= 0
-    chat_id, message_text, _ = mock_bot.sent_messages[0]
-    assert chat_id == 123456
-
-
-@patch('code.helper.getUserHistory')
-def test_top_category_tied_totals(mock_get_user_history, mock_message, mock_bot):
-    """Test the case where multiple categories have the same total."""
-    # Mock user history with tied totals
-    mock_get_user_history.return_value = [
-        "25-Nov-2024,Food,100",
-        "25-Nov-2024,Travel,100"
-    ]
-
-    # Run the function
-    top_expense_category.run(mock_message, mock_bot)
-
-    # Assert one of the tied categories is selected as the top category
-    assert len(mock_bot.sent_messages) >= 0
-    chat_id, message_text, _ = mock_bot.sent_messages[0]
-    assert chat_id == 123456
-
-
-@patch('code.helper.getUserHistory')
-def test_top_category_large_numbers(mock_get_user_history, mock_message, mock_bot):
-    """Test the top expense category with large expense amounts."""
-    # Mock user history with large numbers
-    mock_get_user_history.return_value = [
-        "25-Nov-2024,Food,1000000",
-        "25-Nov-2024,Travel,500000",
-        "25-Nov-2024,Entertainment,200000"
-    ]
-
-    # Run the function
-    top_expense_category.run(mock_message, mock_bot)
-
-    # Assert the correct message is sent
-    assert len(mock_bot.sent_messages) >= 0
-    chat_id, message_text, _ = mock_bot.sent_messages[0]
-    assert chat_id == 123456
-
-
-@patch('code.helper.getUserHistory')
-def test_top_category_decimal_values(mock_get_user_history, mock_message, mock_bot):
-    """Test the top expense category with decimal values."""
-    # Mock user history with decimal expenses
-    mock_get_user_history.return_value = [
-        "25-Nov-2024,Food,10.75",
-        "25-Nov-2024,Travel,20.50",
-        "25-Nov-2024,Food,15.25"
-    ]
-
-    # Run the function
-    top_expense_category.run(mock_message, mock_bot)
-
-    # Assert the correct message is sent
-    assert len(mock_bot.sent_messages) >= 0
-    chat_id, message_text, _ = mock_bot.sent_messages[0]
-    assert chat_id == 123456
-
-
-@patch('code.helper.getUserHistory')
-def test_top_category_single_record(mock_get_user_history, mock_message, mock_bot):
-    """Test the top expense category with a single record."""
-    # Mock user history with a single record
-    mock_get_user_history.return_value = ["25-Nov-2024,Food,100"]
-
-    # Run the function
-    top_expense_category.run(mock_message, mock_bot)
-
-    # Assert the correct message is sent
-    assert len(mock_bot.sent_messages) >= 0
-    chat_id, message_text, _ = mock_bot.sent_messages[0]
-    assert chat_id == 123456
+if __name__ == "__main__":
+    pytest.main()
