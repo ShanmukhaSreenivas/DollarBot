@@ -9,10 +9,12 @@ We have significantly enhanced the Dollar Bot's functionality, user engagement, 
 
 **Set Savings Goal:** Users can now set monthly savings goals and track their progress with weekly notifications. This feature helps users stay on track and adjust spending to meet their financial targets.
 
-**Gamified Saving Goals:** We've added gamification elements to encourage better financial habits. Users earn badges or points for staying under budget or achieving savings milestones, making the process of saving money more fun and engaging.
-
 **Top Expense Category Insight:** This new feature gives users a clear view of their top spending category over a specified period (week/month), allowing for better expense management and prioritization.
 **Daily Expense Reminder:** A reminder system has been implemented to prompt users to log their daily expenses, ensuring consistent tracking and keeping users engaged with their financial data.
+
+**Gamified Saving Goals:** We've added gamification elements to encourage better financial habits. Users earn badges or points for staying under budget or achieving savings milestones, making the process of saving money more fun and engaging.
+
+**Daily Expense Reminder:** A reminder system has been integrated to prompt users to log their daily expenses. This ensures consistent tracking and helps users stay engaged with the app.
 
 
 
