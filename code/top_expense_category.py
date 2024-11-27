@@ -28,7 +28,7 @@ def run(message, bot):
         # Aggregate expenses by category
         category_totals = {}
         for record in user_history:
-            date, category, amount = record.split(',')
+            _, category, amount = record.split(',')
             amount = float(amount.strip())
             category_totals[category] = category_totals.get(category, 0) + amount
 
