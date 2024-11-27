@@ -566,8 +566,9 @@ def generate_social_media_links(dropbox_link):
     
     return {
         "Facebook": facebook_url,
-        "Twitter": twitter_url,
         "LinkedIn": linkedin_url,
+        "Twitter": twitter_url,
+        
     }
 
 def upload_to_dropbox(file_path, dropbox_path):
