@@ -2,7 +2,7 @@
 ![MIT license](https://img.shields.io/badge/License-MIT-green.svg)
 ![GitHub](https://img.shields.io/github/languages/top/ShanmukhaSreenivas/DollarBot?color=red&label=Python&logo=Python&logoColor=yellow)
 ![GitHub](https://img.shields.io/badge/Language-Python-blue.svg)
-[![DOI](https://zenodo.org/records/14226950.svg)](https://zenodo.org/records/14226950)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14226950.svg)](https://doi.org/10.5281/zenodo.14226950)
 ![GitHub contributors](https://img.shields.io/github/contributors/ShanmukhaSreenivas/DollarBot)
 [![Platform](https://img.shields.io/badge/Platform-Telegram-blue)](https://desktop.telegram.org/)
 [![codecov](https://codecov.io/gh/tpanati/DollarBot/graph/badge.svg?token=23RW1XPB3P)](https://codecov.io/gh/tpanati/DollarBot)
