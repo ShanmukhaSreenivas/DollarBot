@@ -138,8 +138,8 @@ def show_help(message):
         "/currency - Convert between different currencies 💱\n"
         "/setgoal - Set a savings goal 🎯\n"
         "/checkgoal - Check your savings goal progress 📈\n"
-        "/updategoal - Update your savings progress 💰\n"
-        "/resetgoal - Reset your savings goal 🔄\n"
+        "/updategoal - Update your savings goal progress 💰\n"
+        "/resetgoal - Reset your savings goal progress 🔄\n"
         "/summary - View a summary of your savings progress 📜\n"
         "For more info, type /faq or tap the button below 👇"
     )
@@ -669,7 +669,7 @@ def run_scheduler():
 @bot.message_handler(commands=["checkgoal"])
 def command_checkgoal(message):
     """
-    Handles the /checkgoal command to check savings progress.
+    Handles the /checkgoal command to check savings progress(redundant feat).
     """
     try:
         check_savings_goal(bot, message)
