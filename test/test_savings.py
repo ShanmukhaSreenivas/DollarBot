@@ -1,5 +1,11 @@
 import pytest
 from unittest.mock import MagicMock, patch
+import sys
+import os
+
+# Explicitly add the `code` directory to the system path
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../code')))
+
 from code import code, helper  # Adjust imports based on your folder structure
 # from code import helper
 
