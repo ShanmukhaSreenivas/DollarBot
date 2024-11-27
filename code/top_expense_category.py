@@ -45,7 +45,7 @@ def run(message, bot):
         bot.send_message(chat_id, response_message, parse_mode="Markdown")
 
     except Exception as e:
-        logging.exception(f"Error in run function for Top Expense Category Insight: {str(e)}")
-        bot.reply_to(message, f"An error occurred: {str(e)}")
+        logging.exception(f"Error in the run function for Top Expense Category Insight: {str(e)}")
+        bot.reply_to(message, f"An error occurred:- {str(e)}")
 
 # This function can now be added to the bot's command handlers for deployment.
