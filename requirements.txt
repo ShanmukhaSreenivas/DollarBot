@@ -16,3 +16,4 @@ pydub
 forex-python
 dropbox
 schedule
+coverage
