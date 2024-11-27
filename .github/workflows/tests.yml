@@ -22,7 +22,6 @@ jobs:
         pip install pytest
         pip install telebot
         pip install pytest-mock
-        pip install unittest
     - name: Set PYTHONPATH
       run: echo "PYTHONPATH=$(pwd)" >> $GITHUB_ENV
     - name: Running test cases for top category feature
