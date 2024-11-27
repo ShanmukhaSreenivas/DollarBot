@@ -1,4 +1,4 @@
-# &nbsp;&nbsp;SE_Project 2
+# &nbsp;&nbsp;SE Project 3
 
 The following video showcases our project with significant changes:
 [Updated Project Video](https://youtu.be/bJzWYdG4ug4)
