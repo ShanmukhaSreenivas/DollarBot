@@ -30,7 +30,7 @@ def run(message, bot):
         for record in user_history:
             _, category, amount = record.split(',')
             amount = float(amount.strip())
-            category_totals[category] = category_totals.get(category, 0) + amount
+            category_totals[category] =  amount + category_totals.get(category, 0)
 
         # Find the top expense category
         top_category = max(category_totals, key=category_totals.get)
