@@ -98,7 +98,7 @@ For a quick walkthrough of the new features, check out the [demo video here](htt
   
 - **Daily Expense Reminder:** A scheduling feature that sends users a reminder to log their daily expenses if none have been recorded. This ensures users maintain a consistent habit of tracking their expenses and stay on top of their financial activities.
   
-- **Set Savings Goal:** Users can set a monthly savings goal and receive weekly notifications about their progress. At the end of each week, the bot evaluates whether users are on track to meet their savings goals and provides recommendations on adjusting spending. This feature integrates seamlessly with budget tracking, offering real-time feedback to encourage better financial habits.
+- **Set Monthly Spending Limit:** Users can set a monthly spending limit to better manage their finances. The bot tracks their spending throughout the month, providing updates on the total amount spent and the remaining balance from the set limit. This feature integrates with budget tracking and offers real-time feedback to help users stay within their financial boundaries, encouraging more disciplined spending habits.
 
 - **Enhanced Error Handling:** Introduced targeted custom exceptions to manage errors effectively during various operations, including command processing, expense recording, and report generation. Improved error logging for critical components, making it easier to debug and maintain the application. Added fallback messages for invalid inputs, ensuring the bot provides clear guidance to users when unexpected inputs are encountered.
   
