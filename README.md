@@ -37,7 +37,7 @@ And the best part? That means no matter where you are, it's there to assist you 
 
 ## Demo Video
 
-<a href="https://youtu.be/bAio20DZ_-I">https://youtu.be/bAio20DZ_-I</a>
+<a href="https://youtu.be/KvNUQUoFNpk">https://youtu.be/KvNUQUoFNpk</a>
 
 
 ## :money_with_wings: About DollarBot
