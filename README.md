@@ -91,7 +91,7 @@ With simple commands, this bot allows you to:
 # :star: What's New? - ( Latest version )
 
 -### Demo Video
-For a quick walkthrough of the new features, check out the [demo video here](https://drive.google.com/file/d/1KgL1cUITotW6KhUY0iBWnY_TGmof85OS/view?usp=drive_link).
+For a quick walkthrough of the new features, check out the [demo video here](https://youtu.be/KvNUQUoFNpk).
 
 
 - **Top Expense Category Insight:** This feature identifies the user’s top expense category over a specific time frame, such as a week or month. It provides a clear picture of the areas where the user spends the most, helping them focus on expense management in critical categories.
