@@ -55,7 +55,7 @@ def check_savings_goal(bot, message):
         bot.reply_to(message, "You haven't set a savings goal yet! Use /setgoal to set one.")
 
 def update_savings_goal(bot, message):
-    bot.reply_to(message, "Enter the amount you saved recently (e.g., 100):")
+    bot.reply_to(message, "Enter the amount you saved recently (e.g., 120):")
     bot.register_next_step_handler(message, lambda msg: process_update_goal(bot, msg))
 
 def process_update_goal(bot, message):
@@ -68,9 +68,9 @@ def process_update_goal(bot, message):
             goals[user_id]['saved'] += saved_amount
             save_goals(goals)
 
-            bot.reply_to(message, f"Added ${saved_amount:.2f} to your savings! Use /checkgoal to see progress.")
+            bot.reply_to(message, f"Added ${saved_amount:.2f} to your savings! Please use /checkgoal to see progress.")
         else:
-            bot.reply_to(message, "You haven't set a savings goal yet! Use /setgoal to set one.")
+            bot.reply_to(message, "You haven't set a savings goal yet! Please use /setgoal to set one.")
     except ValueError:
         bot.reply_to(message, "Invalid amount. Please enter a valid number.")
 
