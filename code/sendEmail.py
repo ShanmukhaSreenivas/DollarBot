@@ -115,7 +115,7 @@ def acceptEmailId(message, bot):
                 #Create SMTP session for sending the mail
                 session = smtplib.SMTP('smtp.gmail.com', 587) #use gmail with port
                 session.starttls() #enable security
-                session.login(sender_address, sender_pass) #login with mail_id and password
+                session.login(sender_address, sender_pass)
                 text = message.as_string()
                 session.sendmail(sender_address, receiver_address, text)
                 session.quit()

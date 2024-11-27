@@ -17,7 +17,6 @@ def save_goal_handler(bot, message):
     """
     Handles the process of setting a savings goal.
     """
-    print("Inside save_goal_handler function")
 
     bot.reply_to(message, "Enter your savings goal amount (e.g., 500):")
 
@@ -39,9 +38,6 @@ def save_goal_handler(bot, message):
 
     # Register the next step handler
     bot.register_next_step_handler(message, process_set_goal)
-
-
-
 
 
 def check_savings_goal(bot, message):
