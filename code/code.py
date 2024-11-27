@@ -237,7 +237,7 @@ def callback_query(call):
         handle_currencies_command(call.message)   
     elif command == "socialmedia":  # New command added here
         command_socialmedia(call.message)
-    elif command == "savings":  # Add this condition
+    elif command == "expenditure":  # Add this condition
         command_savings(call.message)    
     elif command == "top_category": 
         command_top_category(call.message)
@@ -512,9 +512,9 @@ def display_savings_progress(chat_id):
         bot.send_message(chat_id, "No savings goal set. Use 'Set Goal' to add one.")
     else:
         progress_message = (
-            f"Savings Goal: ${savings_goal}\n"
+            f"Expenditure Goal: ${savings_goal}\n"
             f"Spent This Month: ${savings_goal - savings}\n"
-            f"Remaining Savings: ${savings if savings >= 0 else 0}\n"
+            f"Remaining Expenditures: ${savings if savings >= 0 else 0}\n"
             f"Goal Status: {'On Track!' if savings > 0 else 'Goal Exceeded!'}"
         )
         bot.send_message(chat_id, progress_message)
@@ -524,7 +524,7 @@ def set_savings_goal(message):
         chat_id = message.chat.id
         goal = float(message.text)
         helper.set_savings_goal(chat_id, goal)
-        bot.send_message(chat_id, f"Savings goal of ${goal} set successfully!")
+        bot.send_message(chat_id, f"Expenditure goal of ${goal} set successfully!")
     except ValueError:
         bot.send_message(chat_id, "Invalid input. Please enter a numeric value.")
 
@@ -534,7 +534,7 @@ def handle_savings_options(message):
     option = message.text
 
     if option == "Set Goal":
-        msg = bot.send_message(chat_id, "Enter your monthly savings goal (in $):")
+        msg = bot.send_message(chat_id, "Enter your monthly expenditure goal (in $):")
         bot.register_next_step_handler(msg, set_savings_goal)
     elif option == "View Progress":
         display_savings_progress(chat_id)
