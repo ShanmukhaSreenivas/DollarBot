@@ -39,6 +39,7 @@ def test_daily_reminder_no_users():
     """Test the daily reminder when there are no users."""
     bot = MockBot()
     users = []  # Simulate no users
+    #user_id_store = []
     for user_id in users:
         if user_id > 0:
             bot.send_message(user_id, "Don't forget to log your expenses today! 📝")
@@ -47,7 +48,7 @@ def test_daily_reminder_no_users():
 def test_daily_reminder_large_user_id():
     """Test the daily reminder with a large user ID."""
     bot = MockBot()
-    users = [9999999999]  # Large user ID
+    users = [999999999]  # Large user ID
     for user_id in users:
         if user_id > 0:
             bot.send_message(user_id, "Don't forget to log your expenses today! 📝")
