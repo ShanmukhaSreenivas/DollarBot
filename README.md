@@ -31,10 +31,6 @@ And the best part? That means no matter where you are, it's there to assist you 
 </p>
 <hr>
 
-## Scorecard
-
-[Score card - Group 13](https://github.com/tpanati/DollarBot/blob/main/proj3/DollarBot_proj3_scorecard.csv)
-
 ## Demo Video
 
 <a href="https://youtu.be/bAio20DZ_-I">https://youtu.be/bAio20DZ_-I</a>
