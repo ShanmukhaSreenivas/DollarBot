@@ -237,10 +237,11 @@ def callback_query(call):
         handle_currencies_command(call.message)   
     elif command == "socialmedia":  # New command added here
         command_socialmedia(call.message)
-    elif command == "top_category": 
-        command_top_category(call.message)
     elif command == "savings":  # Add this condition
         command_savings(call.message)    
+    elif command == "top_category": 
+        command_top_category(call.message)
+    
     elif DetailedTelegramCalendar.func()(call):  # If it’s a calendar action
         cal(call,bot)
     else:
