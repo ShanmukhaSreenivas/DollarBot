@@ -38,4 +38,4 @@ jobs:
     - name: Run tests with pytest
       env:
         PYTHONPATH: ${{ github.workspace }}  # Adding the root directory to PYTHONPATH
-      run: pytest
+      run: pytest test/
