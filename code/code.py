@@ -509,7 +509,7 @@ def command_socialmedia(message):
 def display_savings_progress(chat_id):
     savings_goal, savings = helper.calculate_savings_progress(chat_id)
     if savings_goal is None:
-        bot.send_message(chat_id, "No savings goal set. Use 'Set Goal' to add one.")
+        bot.send_message(chat_id, "No savings goal set. Use 'Set Limit' to add one.")
     else:
         progress_message = (
             f"Expenditure Goal: ${savings_goal}\n"
@@ -533,7 +533,7 @@ def handle_savings_options(message):
     chat_id = message.chat.id
     option = message.text
 
-    if option == "Set Goal":
+    if option == "Set Limit":
         msg = bot.send_message(chat_id, "Enter your monthly expenditure goal (in $):")
         bot.register_next_step_handler(msg, set_savings_goal)
     elif option == "View Progress":
@@ -544,14 +544,14 @@ def handle_savings_options(message):
         bot.send_message(chat_id, "Invalid option. Please try again.")
 
 
-@bot.message_handler(commands=["savings"])
+@bot.message_handler(commands=["expenditure"])
 def command_savings(message):
     """
     Handles the /savings command for users to set and track savings goals.
     """
     chat_id = message.chat.id
     markup = telebot.types.ReplyKeyboardMarkup(one_time_keyboard=True)
-    markup.add("Set Goal", "View Progress", "Back to Menu")
+    markup.add("Set Limit", "View Progress", "Back to Menu")
     msg = bot.send_message(chat_id, "Choose an option:", reply_markup=markup)
     bot.register_next_step_handler(msg, handle_savings_options)
 
